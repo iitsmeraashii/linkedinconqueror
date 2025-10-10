@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../contexts/AuthContext';
 import { Navigation } from './Navigation';
-import { User, Loader2 } from 'lucide-react';
+import { User, Loader2, ExternalLink, X } from 'lucide-react';
 
 const NICHE_OPTIONS = [
   'Technology & Software',
@@ -23,6 +23,15 @@ interface UserProfileData {
   target_persona: string;
 }
 
+interface ContentSource {
+  id: string;
+  name: string;
+  url: string;
+  description: string;
+  category: string;
+  is_selected?: boolean;
+}
+
 interface UserProfileProps {
   onNavigateToDiscover?: () => void;
   onNavigateToIdeaBank?: () => void;
@@ -38,6 +47,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ onNavigateToDiscover, 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [savedSources, setSavedSources] = useState<ContentSource[]>([]);
 
   useEffect(() => {
     if (!user) {
@@ -45,6 +55,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ onNavigateToDiscover, 
       return;
     }
     loadProfile();
+    loadSavedSources();
   }, [user]);
 
   const loadProfile = async () => {
@@ -116,6 +127,48 @@ export const UserProfile: React.FC<UserProfileProps> = ({ onNavigateToDiscover, 
       setError(err.message || 'Failed to update profile');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const loadSavedSources = async () => {
+    if (!user) return;
+
+    try {
+      const { data, error: fetchError } = await supabase
+        .from('content_sources')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false });
+
+      if (fetchError) throw fetchError;
+
+      setSavedSources(data || []);
+    } catch (err: any) {
+      console.error('Failed to load sources:', err);
+    }
+  };
+
+  const deleteSource = async (sourceId: string) => {
+    try {
+      const { error } = await supabase
+        .from('content_sources')
+        .delete()
+        .eq('id', sourceId);
+
+      if (error) throw error;
+
+      setSavedSources(prev => prev.filter(s => s.id !== sourceId));
+    } catch (err) {
+      console.error('Failed to delete source:', err);
+    }
+  };
+
+  const getFaviconUrl = (url: string) => {
+    try {
+      const domain = new URL(url).hostname;
+      return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+    } catch {
+      return null;
     }
   };
 
@@ -256,6 +309,89 @@ export const UserProfile: React.FC<UserProfileProps> = ({ onNavigateToDiscover, 
               </button>
             </div>
           </form>
+
+          {savedSources.length > 0 && (
+            <div className="mt-12">
+              <div className="bg-white rounded-xl shadow-sm p-8 border border-slate-100">
+                <h2 className="text-xl font-semibold text-slate-900 mb-6">Your Content Sources</h2>
+                <div className="space-y-3">
+                  {savedSources.map((source) => {
+                    const isSelected = source.is_selected;
+                    const faviconUrl = getFaviconUrl(source.url);
+
+                    return (
+                      <div
+                        key={source.id}
+                        className="bg-white border border-slate-200 rounded-lg p-4 hover:border-slate-300 hover:shadow-sm transition-all duration-200"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden">
+                            {faviconUrl ? (
+                              <img
+                                src={faviconUrl}
+                                alt=""
+                                className="w-6 h-6"
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none';
+                                  e.currentTarget.parentElement!.innerHTML = '<div class="text-slate-400 text-xs font-medium">?</div>';
+                                }}
+                              />
+                            ) : (
+                              <div className="text-slate-400 text-xs font-medium">?</div>
+                            )}
+                          </div>
+
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between gap-3 mb-1">
+                              <div className="flex items-center gap-2 flex-1 min-w-0">
+                                <h3 className="font-medium text-slate-900 truncate">
+                                  {source.name}
+                                </h3>
+                              </div>
+                              <span className="flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                                {source.category}
+                              </span>
+                            </div>
+
+                            <p className="text-sm text-slate-600 mb-2 line-clamp-1">
+                              {source.description}
+                            </p>
+
+                            <div className="flex items-center gap-2">
+                              <a
+                                href={source.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 hover:underline"
+                              >
+                                <ExternalLink className="w-3 h-3" />
+                                Visit
+                              </a>
+
+                              <div className="ml-auto flex items-center gap-2">
+                                {isSelected && (
+                                  <span className="text-xs font-medium text-blue-700 bg-blue-100 px-3 py-1.5 rounded-lg">
+                                    Selected
+                                  </span>
+                                )}
+                                <button
+                                  onClick={() => deleteSource(source.id)}
+                                  className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 transition-all duration-200 hover:scale-105"
+                                  title="Delete source"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
