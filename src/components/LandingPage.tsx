@@ -39,13 +39,13 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <div className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto text-center">
             <div className="mb-6 flex items-center justify-center gap-1.5">
-              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-              <span className="ml-3 text-white font-semibold">Rated 4.97/5</span>
-              <span className="text-blue-200 ml-1">from over 50 reviews.</span>
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <span className="ml-2 text-white text-sm font-medium">Rated 4.97/5</span>
+              <span className="text-blue-200 text-sm ml-1">from over 50 reviews.</span>
             </div>
 
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
@@ -69,7 +69,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </h2>
             </div>
 
-            <p className="text-xl sm:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed font-normal">
               Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-semibold text-white">fresh, trusted content ideas</span> instantly.
             </p>
 
@@ -78,12 +78,12 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <>
                   <button
                     onClick={onGetStarted}
-                    className="inline-flex items-center gap-2 px-10 py-5 bg-white hover:bg-gray-50 text-blue-900 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-gray-50 text-blue-900 text-base font-bold rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
                   >
                     Get Started Free
                   </button>
                   <button
-                    className="inline-flex items-center gap-2 px-10 py-5 bg-transparent hover:bg-white/10 text-white text-lg font-bold rounded-full transition-all border-2 border-white"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent hover:bg-white/10 text-white text-base font-bold rounded-full transition-all border-2 border-white"
                   >
                     Learn About Us
                   </button>
