@@ -113,7 +113,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
       <div className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md">
               <div className="absolute top-0 right-0 w-20 h-20 bg-lime-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
               <div className="relative">
                 <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
@@ -126,11 +126,11 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </div>
             </div>
 
-            <div className="group relative bg-gradient-to-br from-lime-50 to-lime-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-blue-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
+            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-lime-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
               <div className="relative">
-                <div className="w-12 h-12 bg-lime-400 rounded-xl flex items-center justify-center mb-6">
-                  <Zap className="w-6 h-6 text-blue-900" />
+                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                  <Zap className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Lightning Fast</h3>
                 <p className="text-blue-700 leading-relaxed">
@@ -139,11 +139,11 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </div>
             </div>
 
-            <div className="group relative bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md">
               <div className="absolute top-0 right-0 w-20 h-20 bg-lime-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
               <div className="relative">
-                <div className="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center mb-6">
-                  <Target className="w-6 h-6 text-lime-400" />
+                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                  <Target className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-blue-900 mb-4">Stay Consistent</h3>
                 <p className="text-blue-700 leading-relaxed">
