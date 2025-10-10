@@ -70,6 +70,8 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
   const [generatedContent, setGeneratedContent] = useState<Record<string, string>>({});
   const [showContentModal, setShowContentModal] = useState(false);
   const [activeContent, setActiveContent] = useState<{ content: string; hook: string } | null>(null);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   useEffect(() => {
     if (user) {
@@ -539,7 +541,9 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(activeContent.content);
-                  alert('Content copied to clipboard!');
+                  setToastMessage('Content copied to clipboard!');
+                  setShowToast(true);
+                  setTimeout(() => setShowToast(false), 3000);
                 }}
                 className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200"
               >
@@ -553,6 +557,15 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {showToast && (
+        <div className="fixed bottom-6 right-6 bg-slate-900 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-50 animate-slide-up">
+          <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+          <span className="font-medium">{toastMessage}</span>
         </div>
       )}
     </>
