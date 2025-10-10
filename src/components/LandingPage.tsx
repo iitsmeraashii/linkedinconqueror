@@ -38,33 +38,33 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
 
         <div className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center py-20">
-            <div className="mb-12 flex items-center justify-center gap-1.5">
-              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              <span className="ml-2 text-white text-sm font-medium">Rated 4.97/5</span>
-              <span className="text-blue-200 text-sm ml-1">from over 50 reviews.</span>
+            <div className="mb-8 flex items-center justify-center gap-1.5">
+              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+              <span className="ml-2 text-white text-xs font-medium">Rated 4.97/5</span>
+              <span className="text-blue-200 text-xs ml-1">from over 50 reviews.</span>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight tracking-tight">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
               WE GENERATE
             </h1>
-            <div className="mb-14">
+            <div className="mb-8 flex flex-wrap items-center justify-center gap-4">
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
-                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight inline">
+                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight whitespace-nowrap">
                   IDEAS YOUR
                 </h2>
               </div>
-              <div className="relative inline-block ml-4">
+              <div className="relative inline-block">
                 <div className="absolute inset-0 bg-blue-900 transform rotate-1 rounded-xl" />
-                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight inline">
+                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight">
                   AUDIENCE
                 </h2>
               </div>
-              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight inline ml-4">
+              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight">
                 LOVE
               </h2>
             </div>
