@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { Navigation } from './Navigation';
-import { Plus, ExternalLink, Lightbulb, Loader2, Trash2 } from 'lucide-react';
+import { Plus, ExternalLink, Lightbulb, Loader2, Trash2, X } from 'lucide-react';
 
 interface UserProfile {
   full_name: string;
@@ -46,6 +46,8 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
   const [isAdding, setIsAdding] = useState(false);
   const [loadingStates, setLoadingStates] = useState<Record<string, LoadingState>>({});
   const [generatedIdeas, setGeneratedIdeas] = useState<Record<string, ContentIdea[]>>({});
+  const [showIdeasModal, setShowIdeasModal] = useState(false);
+  const [selectedSourceIdeas, setSelectedSourceIdeas] = useState<{ ideas: ContentIdea[]; sourceName: string } | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -360,7 +362,14 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                   </div>
 
                   <button
-                    onClick={() => handleGetIdeas(source.id)}
+                    onClick={() => {
+                      if (generatedIdeas[source.id]) {
+                        setSelectedSourceIdeas({ ideas: generatedIdeas[source.id], sourceName: source.name });
+                        setShowIdeasModal(true);
+                      } else {
+                        handleGetIdeas(source.id);
+                      }
+                    }}
                     disabled={loadingStates[source.id]?.status === 'scraping' || loadingStates[source.id]?.status === 'analyzing'}
                     className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-4 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
@@ -373,7 +382,7 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                       <>
                         <span className="text-red-100">Error: {loadingStates[source.id]?.message}</span>
                       </>
-                    ) : loadingStates[source.id]?.status === 'complete' ? (
+                    ) : generatedIdeas[source.id] ? (
                       <>
                         <Lightbulb className="w-4 h-4" />
                         View Ideas ({generatedIdeas[source.id]?.length || 0})
@@ -391,6 +400,74 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
           )}
         </div>
       </div>
+
+      {showIdeasModal && selectedSourceIdeas && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setShowIdeasModal(false)}>
+          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-semibold text-slate-900">Content Ideas</h2>
+                <p className="text-sm text-slate-600 mt-1">From {selectedSourceIdeas.sourceName}</p>
+              </div>
+              <button
+                onClick={() => setShowIdeasModal(false)}
+                className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all duration-200"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="overflow-y-auto p-6 space-y-6" style={{ maxHeight: 'calc(90vh - 80px)' }}>
+              {selectedSourceIdeas.ideas.map((idea, index) => (
+                <div key={index} className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-semibold">
+                      {index + 1}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-semibold text-slate-900 mb-3">
+                        {idea.hook}
+                      </h3>
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Concept</p>
+                          <p className="text-slate-700 leading-relaxed">{idea.concept}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Key Takeaway</p>
+                          <p className="text-slate-700 leading-relaxed">{idea.takeaway}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 flex justify-end gap-3">
+              <button
+                onClick={() => setShowIdeasModal(false)}
+                className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-lg transition-all duration-200"
+              >
+                Close
+              </button>
+              <button
+                onClick={() => {
+                  const sourceId = sources.find(s => s.name === selectedSourceIdeas.sourceName)?.id;
+                  if (sourceId) {
+                    setShowIdeasModal(false);
+                    handleGetIdeas(sourceId);
+                  }
+                }}
+                className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2"
+              >
+                <Lightbulb className="w-4 h-4" />
+                Regenerate Ideas
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
