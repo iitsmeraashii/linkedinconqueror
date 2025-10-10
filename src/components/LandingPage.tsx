@@ -1,4 +1,4 @@
-import { Sparkles, Zap, Target } from 'lucide-react';
+import { Sparkles, Zap, Target, Star, TrendingUp } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface LandingPageProps {
@@ -9,83 +9,63 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            LinkedIn Conqueror
-            <span className="block text-blue-600 mt-2">Ideas To Drafts</span>
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-            Transform your scattered ideas into compelling LinkedIn posts in seconds.
-            Stop staring at blank screens and start building your personal brand.
-          </p>
-          {!user && (
-            <button
-              onClick={onGetStarted}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              <Sparkles className="w-5 h-5" />
-              Get Started Free
-            </button>
-          )}
-          {user && (
-            <div className="inline-block px-8 py-4 bg-green-50 border-2 border-green-200 text-green-800 text-lg font-semibold rounded-xl">
-              Welcome back! You're signed in.
-            </div>
-          )}
-        </div>
+    <div className="min-h-screen">
+      <div className="relative min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,200,255,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(80,160,255,0.15),transparent_50%)]" />
+        <div className="absolute top-20 right-20 w-64 h-64 bg-lime-400 rounded-full filter blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-15 animate-pulse" style={{ animationDelay: '1s' }} />
 
-        <div className="grid md:grid-cols-3 gap-8 mt-20">
-          <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-              <Sparkles className="w-6 h-6 text-blue-600" />
+        <div className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="mb-6 flex items-center justify-center gap-1.5">
+              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              <span className="ml-3 text-white font-semibold">Rated 4.97/5</span>
+              <span className="text-blue-200 ml-1">from over 50 reviews.</span>
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Instant Ideas</h3>
-            <p className="text-gray-600">
-              Capture your thoughts and turn them into structured post drafts instantly.
-              No more writer's block.
+
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
+              WE GENERATE
+            </h1>
+            <div className="relative inline-block mb-8">
+              <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
+              <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight">
+                IDEAS YOUR AUDIENCE LOVE
+              </h2>
+            </div>
+
+            <p className="text-xl sm:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
+              Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-semibold text-white">fresh, trusted content ideas</span> instantly.
             </p>
-          </div>
 
-          <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-              <Zap className="w-6 h-6 text-blue-600" />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              {!user && (
+                <>
+                  <button
+                    onClick={onGetStarted}
+                    className="inline-flex items-center gap-2 px-10 py-5 bg-white hover:bg-gray-50 text-blue-900 text-lg font-bold rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
+                  >
+                    Get Started Free
+                  </button>
+                  <button
+                    className="inline-flex items-center gap-2 px-10 py-5 bg-transparent hover:bg-white/10 text-white text-lg font-bold rounded-full transition-all border-2 border-white"
+                  >
+                    Learn About Us
+                  </button>
+                </>
+              )}
+              {user && (
+                <div className="inline-flex items-center gap-2 px-10 py-5 bg-lime-400 text-blue-900 text-lg font-bold rounded-full shadow-2xl">
+                  <TrendingUp className="w-5 h-5" />
+                  Welcome back! Let's create.
+                </div>
+              )}
             </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
-            <p className="text-gray-600">
-              From idea to polished draft in seconds. Spend less time writing,
-              more time engaging.
-            </p>
           </div>
-
-          <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-              <Target className="w-6 h-6 text-blue-600" />
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">Stay Consistent</h3>
-            <p className="text-gray-600">
-              Build your personal brand with regular, high-quality content.
-              Your audience will thank you.
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-24 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Ready to conquer LinkedIn?
-          </h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Join creators who are building their personal brand, one post at a time.
-          </p>
-          {!user && (
-            <button
-              onClick={onGetStarted}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white text-lg font-semibold rounded-xl transition-all transform hover:scale-105"
-            >
-              Start Creating Now
-            </button>
-          )}
         </div>
       </div>
     </div>
