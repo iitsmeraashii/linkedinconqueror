@@ -325,7 +325,7 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
                 onClick={handleDiscoverClick}
                 className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold text-lg px-12 py-5 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
               >
-                Discover Content Sources
+                Show Recommendations
               </button>
               <p className="text-sm text-slate-500 mt-4 max-w-md text-center">
                 Click to get best recommended sources to generate ideas for your niche
