@@ -21,6 +21,17 @@ interface ContentSource {
   updated_at: string;
 }
 
+interface ContentIdea {
+  hook: string;
+  concept: string;
+  takeaway: string;
+}
+
+interface LoadingState {
+  status: 'idle' | 'scraping' | 'analyzing' | 'complete' | 'error';
+  message?: string;
+}
+
 interface IdeaBankProps {
   onNavigateToDiscover?: () => void;
 }
@@ -33,6 +44,8 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
   const [isLoadingSources, setIsLoadingSources] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
+  const [loadingStates, setLoadingStates] = useState<Record<string, LoadingState>>({});
+  const [generatedIdeas, setGeneratedIdeas] = useState<Record<string, ContentIdea[]>>({});
 
   useEffect(() => {
     if (user) {
@@ -140,7 +153,77 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
   };
 
   const handleGetIdeas = async (sourceId: string) => {
-    console.log('Get ideas for source:', sourceId);
+    const source = sources.find(s => s.id === sourceId);
+    if (!source || !userProfile) return;
+
+    setLoadingStates(prev => ({
+      ...prev,
+      [sourceId]: { status: 'scraping', message: 'Generating Ideas…' }
+    }));
+
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-ideas`;
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          url: source.url,
+          niche: userProfile.primary_niche,
+          targetPersona: userProfile.target_persona,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to generate ideas');
+      }
+
+      setLoadingStates(prev => ({
+        ...prev,
+        [sourceId]: {
+          status: 'analyzing',
+          message: `Analyzing ideas for ${userProfile.primary_niche} & ${userProfile.target_persona}…`
+        }
+      }));
+
+      const data = await response.json();
+
+      if (data.success && data.ideas) {
+        setGeneratedIdeas(prev => ({
+          ...prev,
+          [sourceId]: data.ideas
+        }));
+
+        setLoadingStates(prev => ({
+          ...prev,
+          [sourceId]: { status: 'complete' }
+        }));
+
+        console.log('Generated ideas:', data.ideas);
+      } else {
+        throw new Error('No ideas generated');
+      }
+    } catch (err) {
+      console.error('Error generating ideas:', err);
+      setLoadingStates(prev => ({
+        ...prev,
+        [sourceId]: {
+          status: 'error',
+          message: err instanceof Error ? err.message : 'Failed to generate ideas'
+        }
+      }));
+
+      setTimeout(() => {
+        setLoadingStates(prev => {
+          const newStates = { ...prev };
+          delete newStates[sourceId];
+          return newStates;
+        });
+      }, 3000);
+    }
   };
 
   const handleSignOut = async () => {
@@ -278,10 +361,29 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
 
                   <button
                     onClick={() => handleGetIdeas(source.id)}
-                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-4 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    disabled={loadingStates[source.id]?.status === 'scraping' || loadingStates[source.id]?.status === 'analyzing'}
+                    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-4 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
-                    <Lightbulb className="w-4 h-4" />
-                    Get Content Ideas
+                    {loadingStates[source.id]?.status === 'scraping' || loadingStates[source.id]?.status === 'analyzing' ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        {loadingStates[source.id]?.message}
+                      </>
+                    ) : loadingStates[source.id]?.status === 'error' ? (
+                      <>
+                        <span className="text-red-100">Error: {loadingStates[source.id]?.message}</span>
+                      </>
+                    ) : loadingStates[source.id]?.status === 'complete' ? (
+                      <>
+                        <Lightbulb className="w-4 h-4" />
+                        View Ideas ({generatedIdeas[source.id]?.length || 0})
+                      </>
+                    ) : (
+                      <>
+                        <Lightbulb className="w-4 h-4" />
+                        Get Content Ideas
+                      </>
+                    )}
                   </button>
                 </div>
               ))}
