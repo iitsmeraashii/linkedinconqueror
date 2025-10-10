@@ -79,7 +79,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </div>
             </div>
 
-            <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed font-normal pt-2">
+            <p className="text-base sm:text-lg text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
               Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-semibold text-white">fresh, trusted content ideas</span> instantly.
             </p>
 
@@ -88,12 +88,12 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <>
                   <button
                     onClick={onGetStarted}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-gray-50 text-blue-900 text-base font-bold rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
+                    className="inline-flex items-center gap-2 px-7 py-3 bg-white hover:bg-gray-50 text-blue-900 text-sm font-semibold rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
                   >
                     Get Started Free
                   </button>
                   <button
-                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent hover:bg-white/10 text-white text-base font-bold rounded-full transition-all border-2 border-white"
+                    className="inline-flex items-center gap-2 px-7 py-3 bg-transparent hover:bg-white/10 text-white text-sm font-semibold rounded-full transition-all border-2 border-white"
                   >
                     Learn About Us
                   </button>
