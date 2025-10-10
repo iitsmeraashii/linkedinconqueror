@@ -5,11 +5,15 @@ import { LandingPage } from './components/LandingPage';
 import { AuthModal } from './components/AuthModal';
 import { OnboardingScreen } from './components/OnboardingScreen';
 import { DiscoverSources } from './components/DiscoverSources';
+import { IdeaBank } from './components/IdeaBank';
+
+type AppView = 'landing' | 'discover' | 'ideabank';
 
 function AppContent() {
   const { user, loading, needsOnboarding, checkOnboardingStatus } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showTransitionMessage, setShowTransitionMessage] = useState(false);
+  const [currentView, setCurrentView] = useState<AppView>('discover');
   const [onboardingData, setOnboardingData] = useState<{
     fullName: string;
     niche: string;
@@ -37,7 +41,10 @@ function AppContent() {
   }
 
   if (user && !needsOnboarding && !showTransitionMessage) {
-    return <DiscoverSources />;
+    if (currentView === 'ideabank') {
+      return <IdeaBank onNavigateToDiscover={() => setCurrentView('discover')} />;
+    }
+    return <DiscoverSources onNavigateToIdeaBank={() => setCurrentView('ideabank')} />;
   }
 
   if (showTransitionMessage && onboardingData) {

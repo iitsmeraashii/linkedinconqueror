@@ -29,7 +29,11 @@ interface ContentSource {
   relevanceReason?: string;
 }
 
-export const DiscoverSources: React.FC = () => {
+interface DiscoverSourcesProps {
+  onNavigateToIdeaBank?: () => void;
+}
+
+export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToIdeaBank }) => {
   const { user, signOut } = useAuth();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [aiSources, setAiSources] = useState<ContentSource[]>([]);
@@ -292,7 +296,13 @@ export const DiscoverSources: React.FC = () => {
 
   return (
     <>
-      <Navigation onAuthClick={handleSignOut} onLogoClick={() => window.location.href = '/'} />
+      <Navigation
+        onAuthClick={handleSignOut}
+        onLogoClick={() => window.location.href = '/'}
+        onDiscoverClick={() => {}}
+        onIdeaBankClick={onNavigateToIdeaBank}
+        currentView="discover"
+      />
       <div className="min-h-screen bg-white px-4 py-12 pt-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
