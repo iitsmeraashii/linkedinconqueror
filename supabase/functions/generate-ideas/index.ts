@@ -31,7 +31,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const firecrawlApiKey = Deno.env.get("FIRECRAWL_API_KEY");
-    const googleApiKey = Deno.env.get("GOOGLE_API_KEY");
+    const geminiApiKey = Deno.env.get("GEMINI_API_KEY");
 
     if (!firecrawlApiKey) {
       return new Response(
@@ -46,9 +46,9 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    if (!googleApiKey) {
+    if (!geminiApiKey) {
       return new Response(
-        JSON.stringify({ error: "GOOGLE_API_KEY not configured" }),
+        JSON.stringify({ error: "GEMINI_API_KEY not configured" }),
         {
           status: 500,
           headers: {
@@ -128,7 +128,7 @@ Format your response as a JSON array with this structure:
 Make sure the ideas are specifically relevant to ${niche} professionals and resonate with ${targetPersona}.`;
 
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${googleApiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`,
       {
         method: "POST",
         headers: {
