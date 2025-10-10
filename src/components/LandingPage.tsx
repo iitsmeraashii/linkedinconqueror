@@ -51,7 +51,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-none tracking-tight">
               WE GENERATE
             </h1>
-            <div className="mb-8">
+            <div className="mb-8 whitespace-nowrap">
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
                 <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight inline">
