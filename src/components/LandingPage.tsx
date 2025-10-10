@@ -11,10 +11,30 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   return (
     <div className="min-h-screen">
       <div className="relative min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }} />
+        </div>
+
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,200,255,0.15),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(80,160,255,0.15),transparent_50%)]" />
+
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-ping" style={{ animationDuration: '3s' }} />
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-lime-300 rounded-full opacity-60 animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+          <div className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-cyan-300 rounded-full opacity-60 animate-ping" style={{ animationDuration: '5s', animationDelay: '2s' }} />
+          <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-ping" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }} />
+        </div>
+
         <div className="absolute top-20 right-20 w-64 h-64 bg-lime-400 rounded-full filter blur-3xl opacity-20 animate-pulse" />
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-15 animate-pulse" style={{ animationDelay: '1s' }} />
+
+        <div className="absolute top-40 left-1/3 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
 
         <div className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto text-center">
