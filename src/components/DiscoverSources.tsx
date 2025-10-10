@@ -413,7 +413,7 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
                           </div>
                         </div>
 
-                        <div className="flex sm:hidden items-center gap-2 mb-2 ml-8">
+                        <div className="flex sm:hidden items-center gap-2 mb-2" style={{ marginLeft: 'calc(1ch * 2 + 0.5rem)' }}>
                           {isTopThree && (
                             <span className="text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
                               Most Recommended
