@@ -475,7 +475,7 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                             <select
                               value={selectedFormats[ideaKey] || 'text'}
                               onChange={(e) => setSelectedFormats({ ...selectedFormats, [ideaKey]: e.target.value })}
-                              className="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all duration-200"
+                              className="w-full text-sm pl-3 pr-10 py-2 border border-slate-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all duration-200 appearance-none bg-white bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg%20width%3d%2210%22%20height%3d%226%22%20viewBox%3d%220%200%2010%206%22%20fill%3d%22none%22%20xmlns%3d%22http%3a//www.w3.org/2000/svg%22%3e%3cpath%20d%3d%22M1%201L5%205L9%201%22%20stroke%3d%22%23475569%22%20stroke-width%3d%221.5%22%20stroke-linecap%3d%22round%22%20stroke-linejoin%3d%22round%22/%3e%3c/svg%3e')] bg-no-repeat bg-[center_right_0.75rem]"
                             >
                               {CONTENT_FORMATS.map((format) => (
                                 <option key={format.id} value={format.id}>
