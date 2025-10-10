@@ -471,11 +471,11 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                               <p className="text-xs text-slate-600">{idea.why_it_works}</p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-2 mt-3">
+                          <div className="flex flex-col gap-2 mt-3">
                             <select
                               value={selectedFormats[ideaKey] || 'text'}
                               onChange={(e) => setSelectedFormats({ ...selectedFormats, [ideaKey]: e.target.value })}
-                              className="flex-1 text-sm px-3 py-2 border border-slate-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all duration-200"
+                              className="w-full text-sm px-3 py-2 border border-slate-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all duration-200"
                             >
                               {CONTENT_FORMATS.map((format) => (
                                 <option key={format.id} value={format.id}>
@@ -486,7 +486,7 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                             <button
                               onClick={() => handleGenerateContent(source.id, idx, idea)}
                               disabled={generatingContent[ideaKey]}
-                              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-sm whitespace-nowrap"
+                              className="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-sm"
                             >
                               {generatingContent[ideaKey] ? (
                                 <>
