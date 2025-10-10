@@ -40,6 +40,7 @@ export const DiscoverSources: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [selectedAISources, setSelectedAISources] = useState<Set<string>>(new Set());
   const [hasLoadedAI, setHasLoadedAI] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -72,6 +73,7 @@ export const DiscoverSources: React.FC = () => {
 
   const fetchAISources = async (niche: string, targetPersona: string) => {
     setIsLoadingAI(true);
+    setErrorMessage(null);
     try {
       const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/discover-sources`;
       const response = await fetch(apiUrl, {
@@ -99,9 +101,14 @@ export const DiscoverSources: React.FC = () => {
         }));
         setAiSources(formattedSources);
         setHasLoadedAI(true);
+      } else {
+        const errorMsg = result.error || 'Failed to load AI sources';
+        setErrorMessage(errorMsg);
+        console.error('Error from API:', result);
       }
     } catch (err) {
       console.error('Error fetching AI sources:', err);
+      setErrorMessage('Failed to connect to the discovery service. Please try again later.');
     } finally {
       setIsLoadingAI(false);
     }
@@ -299,6 +306,14 @@ export const DiscoverSources: React.FC = () => {
                 <Loader2 className="w-6 h-6 animate-spin" />
                 <span className="text-lg">Finding the best sources for you...</span>
               </div>
+            </div>
+          )}
+
+          {errorMessage && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
+              <p className="text-red-800 font-medium mb-1">Error Loading Sources</p>
+              <p className="text-red-600 text-sm">{errorMessage}</p>
+              <p className="text-red-600 text-sm mt-2">Please check the browser console for more details.</p>
             </div>
           )}
 
