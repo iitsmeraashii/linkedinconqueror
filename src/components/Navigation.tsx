@@ -1,4 +1,4 @@
-import { Lightbulb } from 'lucide-react';
+import { Lightbulb, User } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface NavigationProps {
@@ -6,10 +6,11 @@ interface NavigationProps {
   onLogoClick?: () => void;
   onDiscoverClick?: () => void;
   onIdeaBankClick?: () => void;
-  currentView?: 'discover' | 'ideabank';
+  onProfileClick?: () => void;
+  currentView?: 'discover' | 'ideabank' | 'profile';
 }
 
-export function Navigation({ onAuthClick, onLogoClick, onDiscoverClick, onIdeaBankClick, currentView }: NavigationProps) {
+export function Navigation({ onAuthClick, onLogoClick, onDiscoverClick, onIdeaBankClick, onProfileClick, currentView }: NavigationProps) {
   const { user, signOut } = useAuth();
 
   const handleAuthAction = async () => {
@@ -71,12 +72,27 @@ export function Navigation({ onAuthClick, onLogoClick, onDiscoverClick, onIdeaBa
             )}
           </div>
 
-          <button
-            onClick={handleAuthAction}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
-          >
-            {user ? 'Sign Out' : 'Sign In / Sign Up'}
-          </button>
+          <div className="flex items-center gap-2">
+            {user && onProfileClick && (
+              <button
+                onClick={onProfileClick}
+                className={`p-2 rounded-lg transition-colors ${
+                  currentView === 'profile'
+                    ? 'bg-blue-50 text-blue-700'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                }`}
+                title="Profile"
+              >
+                <User className="w-5 h-5" />
+              </button>
+            )}
+            <button
+              onClick={handleAuthAction}
+              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+            >
+              {user ? 'Sign Out' : 'Sign In / Sign Up'}
+            </button>
+          </div>
         </div>
       </div>
     </nav>

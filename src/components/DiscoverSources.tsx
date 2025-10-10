@@ -31,9 +31,10 @@ interface ContentSource {
 
 interface DiscoverSourcesProps {
   onNavigateToIdeaBank?: () => void;
+  onNavigateToProfile?: () => void;
 }
 
-export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToIdeaBank }) => {
+export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToIdeaBank, onNavigateToProfile }) => {
   const { user, signOut } = useAuth();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [aiSources, setAiSources] = useState<ContentSource[]>([]);
@@ -301,6 +302,7 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
         onLogoClick={() => window.location.href = '/'}
         onDiscoverClick={() => {}}
         onIdeaBankClick={onNavigateToIdeaBank}
+        onProfileClick={onNavigateToProfile}
         currentView="discover"
       />
       <div className="min-h-screen bg-white px-4 py-12 pt-24">

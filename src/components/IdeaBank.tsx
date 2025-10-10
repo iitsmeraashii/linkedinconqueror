@@ -51,9 +51,10 @@ interface LoadingState {
 
 interface IdeaBankProps {
   onNavigateToDiscover?: () => void;
+  onNavigateToProfile?: () => void;
 }
 
-export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
+export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover, onNavigateToProfile }) => {
   const { user, signOut } = useAuth();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [sources, setSources] = useState<ContentSource[]>([]);
@@ -328,6 +329,7 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
         onLogoClick={() => window.location.href = '/'}
         onDiscoverClick={onNavigateToDiscover}
         onIdeaBankClick={() => {}}
+        onProfileClick={onNavigateToProfile}
         currentView="ideabank"
       />
       <div className="min-h-screen bg-white px-4 py-12 pt-24">

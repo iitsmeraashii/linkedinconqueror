@@ -6,8 +6,9 @@ import { AuthModal } from './components/AuthModal';
 import { OnboardingScreen } from './components/OnboardingScreen';
 import { DiscoverSources } from './components/DiscoverSources';
 import { IdeaBank } from './components/IdeaBank';
+import { UserProfile } from './components/UserProfile';
 
-type AppView = 'landing' | 'discover' | 'ideabank';
+type AppView = 'landing' | 'discover' | 'ideabank' | 'profile';
 
 function AppContent() {
   const { user, loading, needsOnboarding, checkOnboardingStatus } = useAuth();
@@ -42,9 +43,22 @@ function AppContent() {
 
   if (user && !needsOnboarding && !showTransitionMessage) {
     if (currentView === 'ideabank') {
-      return <IdeaBank onNavigateToDiscover={() => setCurrentView('discover')} />;
+      return (
+        <IdeaBank
+          onNavigateToDiscover={() => setCurrentView('discover')}
+          onNavigateToProfile={() => setCurrentView('profile')}
+        />
+      );
     }
-    return <DiscoverSources onNavigateToIdeaBank={() => setCurrentView('ideabank')} />;
+    if (currentView === 'profile') {
+      return <UserProfile />;
+    }
+    return (
+      <DiscoverSources
+        onNavigateToIdeaBank={() => setCurrentView('ideabank')}
+        onNavigateToProfile={() => setCurrentView('profile')}
+      />
+    );
   }
 
   if (showTransitionMessage && onboardingData) {
