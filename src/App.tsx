@@ -51,7 +51,12 @@ function AppContent() {
       );
     }
     if (currentView === 'profile') {
-      return <UserProfile />;
+      return (
+        <UserProfile
+          onNavigateToDiscover={() => setCurrentView('discover')}
+          onNavigateToIdeaBank={() => setCurrentView('ideabank')}
+        />
+      );
     }
     return (
       <DiscoverSources

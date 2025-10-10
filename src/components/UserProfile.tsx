@@ -23,7 +23,12 @@ interface UserProfileData {
   target_persona: string;
 }
 
-export const UserProfile: React.FC = () => {
+interface UserProfileProps {
+  onNavigateToDiscover?: () => void;
+  onNavigateToIdeaBank?: () => void;
+}
+
+export const UserProfile: React.FC<UserProfileProps> = ({ onNavigateToDiscover, onNavigateToIdeaBank }) => {
   const { user, signOut } = useAuth();
   const [fullName, setFullName] = useState('');
   const [selectedNiche, setSelectedNiche] = useState('');
@@ -141,6 +146,10 @@ export const UserProfile: React.FC = () => {
       <Navigation
         onAuthClick={handleSignOut}
         onLogoClick={() => window.location.href = '/'}
+        onDiscoverClick={onNavigateToDiscover}
+        onIdeaBankClick={onNavigateToIdeaBank}
+        onProfileClick={() => {}}
+        currentView="profile"
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center px-4 py-12 pt-24">
         <div className="w-full max-w-xl">
