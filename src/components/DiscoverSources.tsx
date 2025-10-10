@@ -265,8 +265,10 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
     window.location.href = '/';
   };
 
-  const handleContinue = () => {
-    console.log('Continue to main app');
+  const handleViewIdeaBank = () => {
+    if (onNavigateToIdeaBank) {
+      onNavigateToIdeaBank();
+    }
   };
 
   const getFaviconUrl = (url: string) => {
@@ -519,10 +521,10 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
 
           <div className="flex justify-center">
             <button
-              onClick={handleContinue}
+              onClick={handleViewIdeaBank}
               className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3.5 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
             >
-              Continue to Dashboard
+              View your Idea Bank
             </button>
           </div>
         </div>
