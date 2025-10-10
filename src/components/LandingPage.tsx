@@ -51,10 +51,15 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
               WE GENERATE
             </h1>
-            <div className="relative inline-block mb-8">
-              <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
-              <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight">
-                IDEAS YOUR AUDIENCE LOVE
+            <div className="mb-8">
+              <div className="relative inline-block">
+                <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
+                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight inline">
+                  IDEAS YOUR
+                </h2>
+              </div>
+              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight inline ml-4">
+                AUDIENCE LOVE
               </h2>
             </div>
 
