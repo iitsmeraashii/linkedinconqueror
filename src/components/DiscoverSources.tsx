@@ -15,6 +15,7 @@ interface AISuggestedSource {
   url: string;
   description: string;
   type: string;
+  relevanceReason: string;
 }
 
 interface ContentSource {
@@ -25,6 +26,7 @@ interface ContentSource {
   category: string;
   is_selected?: boolean;
   isAISuggested?: boolean;
+  relevanceReason?: string;
 }
 
 export const DiscoverSources: React.FC = () => {
@@ -92,7 +94,8 @@ export const DiscoverSources: React.FC = () => {
           url: source.url,
           description: source.description,
           category: source.type,
-          isAISuggested: true
+          isAISuggested: true,
+          relevanceReason: source.relevanceReason
         }));
         setAiSources(formattedSources);
         setHasLoadedAI(true);
@@ -347,9 +350,15 @@ export const DiscoverSources: React.FC = () => {
                           </span>
                         </div>
 
-                        <p className="text-sm text-slate-600 mb-3 line-clamp-1">
+                        <p className="text-sm text-slate-600 mb-2 line-clamp-1">
                           {source.description}
                         </p>
+
+                        {isAI && source.relevanceReason && (
+                          <p className="text-xs text-blue-600 italic mb-3 line-clamp-1">
+                            Why relevant: {source.relevanceReason}
+                          </p>
+                        )}
 
                         <div className="flex items-center gap-2">
                           <a
