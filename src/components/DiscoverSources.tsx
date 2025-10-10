@@ -342,14 +342,6 @@ export const DiscoverSources: React.FC = () => {
             </div>
           )}
 
-          {!isLoadingAI && allSources.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-slate-500 mb-8">
-                No sources yet. Add your first content source below to get started.
-              </p>
-            </div>
-          )}
-
           {!isLoadingAI && allSources.length > 0 && (
             <>
             <div className="max-h-[600px] overflow-y-auto mb-4 pr-2 space-y-3">
