@@ -51,28 +51,32 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-none tracking-tight">
               WE GENERATE
             </h1>
-            <div className="mb-8 whitespace-nowrap">
-              <div className="relative inline-block">
-                <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
-                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight inline">
-                  IDEAS
+            <div className="mb-8">
+              <div className="whitespace-nowrap">
+                <div className="relative inline-block">
+                  <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
+                  <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight inline">
+                    IDEAS
+                  </h2>
+                </div>
+                <div className="relative inline-block ml-2">
+                  <div className="absolute inset-0 bg-white transform rotate-1 rounded-xl" />
+                  <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight inline">
+                    YOUR
+                  </h2>
+                </div>
+                <div className="relative inline-block ml-2">
+                  <div className="absolute inset-0 bg-blue-900 transform -rotate-1 rounded-xl" />
+                  <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight inline">
+                    AUDIENCE
+                  </h2>
+                </div>
+              </div>
+              <div>
+                <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight">
+                  LOVE
                 </h2>
               </div>
-              <div className="relative inline-block ml-2">
-                <div className="absolute inset-0 bg-white transform rotate-1 rounded-xl" />
-                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight inline">
-                  YOUR
-                </h2>
-              </div>
-              <div className="relative inline-block ml-2">
-                <div className="absolute inset-0 bg-blue-900 transform -rotate-1 rounded-xl" />
-                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight inline">
-                  AUDIENCE
-                </h2>
-              </div>
-              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight inline ml-4">
-                LOVE
-              </h2>
             </div>
 
             <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed font-normal">
