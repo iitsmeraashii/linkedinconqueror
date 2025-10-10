@@ -37,40 +37,40 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <div className="absolute top-40 left-1/3 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
 
         <div className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center py-20">
-            <div className="mb-8 flex items-center justify-center gap-1.5">
-              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-              <Star className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
-              <span className="ml-2 text-white text-xs font-medium">Rated 4.97/5</span>
-              <span className="text-blue-200 text-xs ml-1">from over 50 reviews.</span>
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="mb-6 flex items-center justify-center gap-1.5">
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <span className="ml-2 text-white text-sm font-medium">Rated 4.97/5</span>
+              <span className="text-blue-200 text-sm ml-1">from over 50 reviews.</span>
             </div>
 
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
               WE GENERATE
             </h1>
-            <div className="mb-8 flex flex-wrap items-center justify-center gap-4">
+            <div className="mb-8">
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
-                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight whitespace-nowrap">
+                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight inline">
                   IDEAS YOUR
                 </h2>
               </div>
-              <div className="relative inline-block">
+              <div className="relative inline-block ml-4">
                 <div className="absolute inset-0 bg-blue-900 transform rotate-1 rounded-xl" />
-                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight">
+                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight inline">
                   AUDIENCE
                 </h2>
               </div>
-              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight">
+              <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight inline ml-4">
                 LOVE
               </h2>
             </div>
 
-            <p className="text-base sm:text-lg text-blue-100 max-w-2xl mx-auto mb-14 leading-relaxed font-light">
-              Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-medium text-white">fresh, trusted content ideas</span> instantly.
+            <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed font-normal">
+              Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-semibold text-white">fresh, trusted content ideas</span> instantly.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -78,12 +78,12 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <>
                   <button
                     onClick={onGetStarted}
-                    className="inline-flex items-center gap-2 px-7 py-3 bg-white hover:bg-gray-50 text-blue-900 text-sm font-semibold rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-gray-50 text-blue-900 text-base font-bold rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
                   >
                     Get Started Free
                   </button>
                   <button
-                    className="inline-flex items-center gap-2 px-7 py-3 bg-transparent hover:bg-white/10 text-white text-sm font-semibold rounded-full transition-all border-2 border-white"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 bg-transparent hover:bg-white/10 text-white text-base font-bold rounded-full transition-all border-2 border-white"
                   >
                     Learn About Us
                   </button>
