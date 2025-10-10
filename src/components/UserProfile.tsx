@@ -347,10 +347,21 @@ export const UserProfile: React.FC<UserProfileProps> = ({ onNavigateToDiscover, 
                                 <h3 className="font-medium text-slate-900 truncate">
                                   {source.name}
                                 </h3>
+                                <span className="hidden sm:inline-flex flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                                  {source.category}
+                                </span>
                               </div>
-                              <span className="flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                            </div>
+
+                            <div className="flex sm:hidden items-center gap-2 mb-2">
+                              <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
                                 {source.category}
                               </span>
+                              {isSelected && (
+                                <span className="text-xs font-medium text-blue-700 bg-blue-100 px-2 py-0.5 rounded">
+                                  Selected
+                                </span>
+                              )}
                             </div>
 
                             <p className="text-sm text-slate-600 mb-2 line-clamp-1">
@@ -370,7 +381,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ onNavigateToDiscover, 
 
                               <div className="ml-auto flex items-center gap-2">
                                 {isSelected && (
-                                  <span className="text-xs font-medium text-blue-700 bg-blue-100 px-3 py-1.5 rounded-lg">
+                                  <span className="hidden sm:inline-flex text-xs font-medium text-blue-700 bg-blue-100 px-3 py-1.5 rounded-lg">
                                     Selected
                                   </span>
                                 )}

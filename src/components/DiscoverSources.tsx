@@ -402,13 +402,24 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
                             <h3 className="font-medium text-slate-900 truncate">
                               {source.name}
                             </h3>
+                            <span className="hidden sm:inline-flex flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                              {source.category}
+                            </span>
                             {isTopThree && (
-                              <span className="flex-shrink-0 text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+                              <span className="hidden sm:inline-flex flex-shrink-0 text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
                                 Most Recommended
                               </span>
                             )}
                           </div>
-                          <span className="flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                        </div>
+
+                        <div className="flex sm:hidden items-center gap-2 mb-2 ml-8">
+                          {isTopThree && (
+                            <span className="text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+                              Most Recommended
+                            </span>
+                          )}
+                          <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
                             {source.category}
                           </span>
                         </div>
@@ -505,8 +516,14 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
                                 <h3 className="font-medium text-slate-900 truncate">
                                   {source.name}
                                 </h3>
+                                <span className="hidden sm:inline-flex flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                                  {source.category}
+                                </span>
                               </div>
-                              <span className="flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                            </div>
+
+                            <div className="flex sm:hidden items-center gap-2 mb-2">
+                              <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
                                 {source.category}
                               </span>
                             </div>
