@@ -41,6 +41,7 @@ export const DiscoverSources: React.FC = () => {
   const [selectedAISources, setSelectedAISources] = useState<Set<string>>(new Set());
   const [hasLoadedAI, setHasLoadedAI] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [showDiscoverButton, setShowDiscoverButton] = useState(true);
 
   useEffect(() => {
     if (user) {
@@ -60,15 +61,21 @@ export const DiscoverSources: React.FC = () => {
       if (error) throw error;
       if (data) {
         setUserProfile(data);
-        if (data.primary_niche && data.target_persona && !hasLoadedAI) {
-          fetchAISources(data.primary_niche, data.target_persona);
-        }
       }
     } catch (err) {
       console.error('Error loading profile:', err);
     } finally {
       setIsLoadingProfile(false);
     }
+  };
+
+  const handleDiscoverClick = async () => {
+    if (!userProfile?.primary_niche || !userProfile?.target_persona) {
+      setErrorMessage('Missing niche or target persona information');
+      return;
+    }
+    setShowDiscoverButton(false);
+    fetchAISources(userProfile.primary_niche, userProfile.target_persona);
   };
 
   const fetchAISources = async (niche: string, targetPersona: string) => {
@@ -293,18 +300,36 @@ export const DiscoverSources: React.FC = () => {
               Discover Content Sources
             </h1>
             <p className="text-base text-slate-600 max-w-2xl mx-auto">
-              Here are the best places your{' '}
+              Find the best places your{' '}
               <span className="font-medium text-slate-900">{userProfile?.target_persona || 'audience'}</span>
               {' '}already follows in{' '}
               <span className="font-medium text-slate-900">{userProfile?.primary_niche || 'your niche'}</span>.
             </p>
           </div>
 
+          {showDiscoverButton && !isLoadingAI && aiSources.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-16">
+              <button
+                onClick={handleDiscoverClick}
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold text-lg px-12 py-5 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
+              >
+                Discover Content Sources
+              </button>
+              <p className="text-sm text-slate-500 mt-4 max-w-md text-center">
+                Click to get best recommended sources to generate ideas for your niche
+              </p>
+            </div>
+          )}
+
           {isLoadingAI && (
             <div className="flex items-center justify-center py-16">
-              <div className="flex items-center gap-3 text-slate-600">
-                <Loader2 className="w-6 h-6 animate-spin" />
-                <span className="text-lg">Finding the best sources for you...</span>
+              <div className="flex flex-col items-center gap-3 text-slate-600">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                <span className="text-lg font-medium">
+                  Discovering the top content sources for{' '}
+                  <span className="text-slate-900">{userProfile?.primary_niche}</span> creators who reach{' '}
+                  <span className="text-slate-900">{userProfile?.target_persona}</span>...
+                </span>
               </div>
             </div>
           )}
