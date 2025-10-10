@@ -150,8 +150,14 @@ Make sure each idea is specifically tailored to ${niche} professionals and addre
 
     if (!geminiResponse.ok) {
       const error = await geminiResponse.json();
+      let errorMessage = "It looks like the AI Gods are not on your side right now, please try after some time.";
+
+      if (geminiResponse.status === 429 || (error.error && error.error.message && error.error.message.includes("quota"))) {
+        errorMessage = "Oops, it seems you've exhausted the number of requests you can make for the day. You can try generating amazing content after sometime.";
+      }
+
       return new Response(
-        JSON.stringify({ error: "Failed to generate ideas", details: error }),
+        JSON.stringify({ error: errorMessage, isGeminiError: true }),
         {
           status: geminiResponse.status,
           headers: {
@@ -204,7 +210,8 @@ Make sure each idea is specifically tailored to ${niche} professionals and addre
     return new Response(
       JSON.stringify({
         success: false,
-        error: error.message,
+        error: "We are currently experiencing some issues on our end, we hope to fix them soon.",
+        isGeminiError: false
       }),
       {
         status: 500,

@@ -122,11 +122,17 @@ Do not include any other text, just the JSON array with 10-12 sources ranked by 
     const data = await response.json();
 
     if (!response.ok) {
+      let errorMessage = "It looks like the AI Gods are not on your side right now, please try after some time.";
+
+      if (response.status === 429 || (data.error && data.error.message && data.error.message.includes("quota"))) {
+        errorMessage = "Oops, it seems you've exhausted the number of requests you can make for the day. You can try generating amazing content after sometime.";
+      }
+
       return new Response(
         JSON.stringify({
           success: false,
-          error: "Gemini API error",
-          details: data
+          error: errorMessage,
+          isGeminiError: true
         }),
         {
           status: response.status,
@@ -185,8 +191,8 @@ Do not include any other text, just the JSON array with 10-12 sources ranked by 
     return new Response(
       JSON.stringify({
         success: false,
-        error: "Server error",
-        message: error.message
+        error: "We are currently experiencing some issues on our end, we hope to fix them soon.",
+        isGeminiError: false
       }),
       {
         status: 500,
