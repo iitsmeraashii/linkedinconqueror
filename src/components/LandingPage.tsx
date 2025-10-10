@@ -56,7 +56,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <div className="relative inline-block">
                   <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
                   <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-blue-900 px-8 py-4 leading-tight tracking-tight inline">
-                    IDEAS
+                    CONTENT
                   </h2>
                 </div>
                 <div className="relative inline-block ml-2">
