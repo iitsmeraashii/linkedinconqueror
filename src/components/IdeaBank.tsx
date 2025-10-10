@@ -23,8 +23,7 @@ interface ContentSource {
 
 interface ContentIdea {
   hook: string;
-  concept: string;
-  takeaway: string;
+  why_it_works: string;
 }
 
 interface LoadingState {
@@ -430,12 +429,8 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                       </h3>
                       <div className="space-y-3">
                         <div>
-                          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Concept</p>
-                          <p className="text-slate-700 leading-relaxed">{idea.concept}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Key Takeaway</p>
-                          <p className="text-slate-700 leading-relaxed">{idea.takeaway}</p>
+                          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Why It Works</p>
+                          <p className="text-slate-700 leading-relaxed">{idea.why_it_works}</p>
                         </div>
                       </div>
                     </div>

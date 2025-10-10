@@ -101,31 +101,29 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const truncatedContent = scrapedContent.substring(0, 15000);
+    const cleanContent = scrapedContent
+      .replace(/\[\[.*?\]\]/g, '')
+      .replace(/^(#{1,6}\s.*|---.*|\*\*.*\*\*|Menu|Navigation|Footer|Subscribe|Cookie|Privacy Policy)$/gim, '')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
 
-    const prompt = `You are a LinkedIn content strategist. Based on the following article content, generate 5 unique LinkedIn post ideas tailored for:
+    const scrapedExcerpt = cleanContent.substring(0, 2000);
 
-Niche: ${niche}
-Target Persona: ${targetPersona}
+    const prompt = `Given this content, generate EXACTLY 5 LinkedIn-ready ideas for the ${niche} that resonate with ${targetPersona}. For each, output a 'hook' and a one-line 'why_it_works' tied to the audience's pains/desires. Keep it concise, practical, and non-generic.
 
-Article Content:
-${truncatedContent}
+Source URL: ${url}
+Scraped Excerpt:
+${scrapedExcerpt}
 
-For each idea, provide:
-1. A catchy hook (first line)
-2. Main concept (2-3 sentences)
-3. Key takeaway
-
-Format your response as a JSON array with this structure:
+Format your response as a JSON array with this exact structure:
 [
   {
-    "hook": "...",
-    "concept": "...",
-    "takeaway": "..."
+    "hook": "compelling 1-line LinkedIn hook",
+    "why_it_works": "1 sentence explaining why this idea fits the niche and persona"
   }
 ]
 
-Make sure the ideas are specifically relevant to ${niche} professionals and resonate with ${targetPersona}.`;
+Make sure each idea is specifically tailored to ${niche} professionals and addresses the real needs and desires of ${targetPersona}.`;
 
     const geminiResponse = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${geminiApiKey}`,
