@@ -26,6 +26,24 @@ interface ContentIdea {
   why_it_works: string;
 }
 
+interface IdeaFormat {
+  id: string;
+  label: string;
+}
+
+const CONTENT_FORMATS: IdeaFormat[] = [
+  { id: 'text', label: 'Text Post' },
+  { id: 'image-text', label: 'Image + Text' },
+  { id: 'carousel', label: 'Carousel (slides)' },
+  { id: 'poll', label: 'Poll' },
+  { id: 'short-video', label: 'Short Native Video Script (45–60s)' },
+  { id: 'long-video', label: 'Long Video Script (2–3 min)' },
+  { id: 'article', label: 'Article / Newsletter' },
+  { id: 'thread', label: 'Thread / Multi-post sequence' },
+  { id: 'quote', label: 'Quote Card' },
+  { id: 'case-study', label: 'Case Study Snapshot' },
+];
+
 interface LoadingState {
   status: 'idle' | 'scraping' | 'analyzing' | 'complete' | 'error';
   message?: string;
@@ -47,6 +65,11 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
   const [generatedIdeas, setGeneratedIdeas] = useState<Record<string, ContentIdea[]>>({});
   const [showIdeasModal, setShowIdeasModal] = useState(false);
   const [selectedSourceIdeas, setSelectedSourceIdeas] = useState<{ ideas: ContentIdea[]; sourceName: string } | null>(null);
+  const [selectedFormats, setSelectedFormats] = useState<Record<string, string>>({});
+  const [generatingContent, setGeneratingContent] = useState<Record<string, boolean>>({});
+  const [generatedContent, setGeneratedContent] = useState<Record<string, string>>({});
+  const [showContentModal, setShowContentModal] = useState(false);
+  const [activeContent, setActiveContent] = useState<{ content: string; hook: string } | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -150,6 +173,51 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
       setSources(prev => prev.filter(s => s.id !== sourceId));
     } catch (err) {
       console.error('Error deleting source:', err);
+    }
+  };
+
+  const handleGenerateContent = async (sourceId: string, ideaIndex: number, idea: ContentIdea) => {
+    const ideaKey = `${sourceId}-${ideaIndex}`;
+    const selectedFormat = selectedFormats[ideaKey] || 'text';
+
+    if (!userProfile) return;
+
+    setGeneratingContent(prev => ({ ...prev, [ideaKey]: true }));
+
+    try {
+      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-content`;
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          hook: idea.hook,
+          why_it_works: idea.why_it_works,
+          format: selectedFormat,
+          niche: userProfile.primary_niche,
+          targetPersona: userProfile.target_persona,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to generate content');
+      }
+
+      const data = await response.json();
+
+      if (data.success && data.content) {
+        setGeneratedContent(prev => ({ ...prev, [ideaKey]: data.content }));
+        setActiveContent({ content: data.content, hook: idea.hook });
+        setShowContentModal(true);
+      }
+    } catch (err: any) {
+      console.error('Error generating content:', err);
+      alert(`Error: ${err.message}`);
+    } finally {
+      setGeneratingContent(prev => ({ ...prev, [ideaKey]: false }));
     }
   };
 
@@ -361,14 +429,7 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                   </div>
 
                   <button
-                    onClick={() => {
-                      if (generatedIdeas[source.id]) {
-                        setSelectedSourceIdeas({ ideas: generatedIdeas[source.id], sourceName: source.name });
-                        setShowIdeasModal(true);
-                      } else {
-                        handleGetIdeas(source.id);
-                      }
-                    }}
+                    onClick={() => handleGetIdeas(source.id)}
                     disabled={loadingStates[source.id]?.status === 'scraping' || loadingStates[source.id]?.status === 'analyzing'}
                     className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-4 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
@@ -384,7 +445,7 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                     ) : generatedIdeas[source.id] ? (
                       <>
                         <Lightbulb className="w-4 h-4" />
-                        View Ideas ({generatedIdeas[source.id]?.length || 0})
+                        Regenerate Ideas
                       </>
                     ) : (
                       <>
@@ -393,6 +454,58 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                       </>
                     )}
                   </button>
+
+                  {generatedIdeas[source.id] && (
+                  <div className="mt-4 space-y-3">
+                    <h4 className="text-sm font-semibold text-slate-700 mb-3">Generated Ideas:</h4>
+                    {generatedIdeas[source.id].map((idea, idx) => {
+                      const ideaKey = `${source.id}-${idx}`;
+                      return (
+                        <div key={idx} className="bg-white border border-slate-200 rounded-lg p-4 hover:border-blue-300 transition-all duration-200">
+                          <div className="flex items-start gap-3 mb-3">
+                            <div className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-md flex items-center justify-center text-xs font-semibold">
+                              {idx + 1}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-semibold text-slate-900 mb-1">{idea.hook}</p>
+                              <p className="text-xs text-slate-600">{idea.why_it_works}</p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 mt-3">
+                            <select
+                              value={selectedFormats[ideaKey] || 'text'}
+                              onChange={(e) => setSelectedFormats({ ...selectedFormats, [ideaKey]: e.target.value })}
+                              className="flex-1 text-sm px-3 py-2 border border-slate-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all duration-200"
+                            >
+                              {CONTENT_FORMATS.map((format) => (
+                                <option key={format.id} value={format.id}>
+                                  {format.label}
+                                </option>
+                              ))}
+                            </select>
+                            <button
+                              onClick={() => handleGenerateContent(source.id, idx, idea)}
+                              disabled={generatingContent[ideaKey]}
+                              className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed text-sm whitespace-nowrap"
+                            >
+                              {generatingContent[ideaKey] ? (
+                                <>
+                                  <Loader2 className="w-4 h-4 animate-spin" />
+                                  Generating...
+                                </>
+                              ) : (
+                                <>
+                                  <Lightbulb className="w-4 h-4" />
+                                  Generate Content
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -400,64 +513,43 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
         </div>
       </div>
 
-      {showIdeasModal && selectedSourceIdeas && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setShowIdeasModal(false)}>
+      {showContentModal && activeContent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setShowContentModal(false)}>
           <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="sticky top-0 bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
               <div>
-                <h2 className="text-2xl font-semibold text-slate-900">Content Ideas</h2>
-                <p className="text-sm text-slate-600 mt-1">From {selectedSourceIdeas.sourceName}</p>
+                <h2 className="text-2xl font-semibold text-slate-900">Generated Content</h2>
+                <p className="text-sm text-slate-600 mt-1">{activeContent.hook}</p>
               </div>
               <button
-                onClick={() => setShowIdeasModal(false)}
+                onClick={() => setShowContentModal(false)}
                 className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all duration-200"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="overflow-y-auto p-6 space-y-6" style={{ maxHeight: 'calc(90vh - 80px)' }}>
-              {selectedSourceIdeas.ideas.map((idea, index) => (
-                <div key={index} className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all duration-200">
-                  <div className="flex items-start gap-3 mb-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-lg flex items-center justify-center font-semibold">
-                      {index + 1}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-slate-900 mb-3">
-                        {idea.hook}
-                      </h3>
-                      <div className="space-y-3">
-                        <div>
-                          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Why It Works</p>
-                          <p className="text-slate-700 leading-relaxed">{idea.why_it_works}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="overflow-y-auto p-6" style={{ maxHeight: 'calc(90vh - 140px)' }}>
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                <pre className="whitespace-pre-wrap font-sans text-slate-800 leading-relaxed">{activeContent.content}</pre>
+              </div>
             </div>
 
             <div className="sticky bottom-0 bg-white border-t border-slate-200 px-6 py-4 flex justify-end gap-3">
               <button
-                onClick={() => setShowIdeasModal(false)}
+                onClick={() => {
+                  navigator.clipboard.writeText(activeContent.content);
+                  alert('Content copied to clipboard!');
+                }}
+                className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200"
+              >
+                Copy Content
+              </button>
+              <button
+                onClick={() => setShowContentModal(false)}
                 className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-lg transition-all duration-200"
               >
                 Close
-              </button>
-              <button
-                onClick={() => {
-                  const sourceId = sources.find(s => s.name === selectedSourceIdeas.sourceName)?.id;
-                  if (sourceId) {
-                    setShowIdeasModal(false);
-                    handleGetIdeas(sourceId);
-                  }
-                }}
-                className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center gap-2"
-              >
-                <Lightbulb className="w-4 h-4" />
-                Regenerate Ideas
               </button>
             </div>
           </div>
