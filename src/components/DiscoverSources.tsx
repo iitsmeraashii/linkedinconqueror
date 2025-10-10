@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { Navigation } from './Navigation';
-import { Plus, ExternalLink, Check, Loader2, ListPlus, X } from 'lucide-react';
+import { Plus, ExternalLink, Check, Loader2, ListPlus, X, Trophy, Award, Medal } from 'lucide-react';
 
 interface UserProfile {
   full_name: string;
@@ -332,6 +332,15 @@ export const DiscoverSources: React.FC = () => {
                 const isAI = source.isAISuggested;
                 const isSelected = isAI ? selectedAISources.has(source.url) : source.is_selected;
                 const faviconUrl = getFaviconUrl(source.url);
+                const rank = index + 1;
+                const isTopThree = rank <= 3;
+
+                const getRankIcon = () => {
+                  if (rank === 1) return <Trophy className="w-4 h-4 text-yellow-500" />;
+                  if (rank === 2) return <Award className="w-4 h-4 text-slate-400" />;
+                  if (rank === 3) return <Medal className="w-4 h-4 text-amber-600" />;
+                  return null;
+                };
 
                 return (
                   <div
@@ -357,9 +366,20 @@ export const DiscoverSources: React.FC = () => {
 
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-3 mb-1">
-                          <h3 className="font-medium text-slate-900 truncate">
-                            {source.name}
-                          </h3>
+                          <div className="flex items-center gap-2 flex-1 min-w-0">
+                            <span className="flex-shrink-0 font-semibold text-slate-400 text-sm">
+                              #{rank}
+                            </span>
+                            {getRankIcon()}
+                            <h3 className="font-medium text-slate-900 truncate">
+                              {source.name}
+                            </h3>
+                            {isTopThree && (
+                              <span className="flex-shrink-0 text-xs font-medium text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+                                Most Recommended
+                              </span>
+                            )}
+                          </div>
                           <span className="flex-shrink-0 text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
                             {source.category}
                           </span>
