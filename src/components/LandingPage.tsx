@@ -37,8 +37,8 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <div className="absolute top-40 left-1/3 w-96 h-96 bg-blue-400 rounded-full filter blur-3xl opacity-10 animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }} />
 
         <div className="relative h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="mb-6 flex items-center justify-center gap-1.5">
+          <div className="max-w-5xl mx-auto text-center pt-24">
+            <div className="mb-3 flex items-center justify-center gap-1.5 pt-8">
               <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
               <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -48,10 +48,10 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               <span className="text-blue-200 text-sm ml-1">from over 50 reviews.</span>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-none tracking-tight">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-2 leading-none tracking-tight">
               WE GENERATE
             </h1>
-            <div className="mb-8">
+            <div className="mb-4">
               <div className="whitespace-nowrap">
                 <div className="relative inline-block">
                   <div className="absolute inset-0 bg-lime-400 transform -rotate-1 rounded-xl" />
@@ -79,7 +79,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               </div>
             </div>
 
-            <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed font-normal">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed font-normal pt-2">
               Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-semibold text-white">fresh, trusted content ideas</span> instantly.
             </p>
 
