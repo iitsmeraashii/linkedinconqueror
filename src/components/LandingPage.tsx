@@ -112,6 +112,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
 
       <div className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl sm:text-5xl font-bold text-blue-900 text-center mb-16">Benefits</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md">
               <div className="absolute top-0 right-0 w-20 h-20 bg-lime-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
