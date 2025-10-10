@@ -16,7 +16,6 @@ interface Source {
   url: string;
   description: string;
   type: string;
-  relevanceReason: string;
 }
 
 Deno.serve(async (req: Request) => {
@@ -64,39 +63,31 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const prompt = `You are a content discovery assistant. Given the niche "${niche}" and target persona "${targetPersona}", identify and rank the top 10-12 most relevant content sources for content inspiration.
-
-Your task:
-1. Find highly relevant, popular, and actively updated content sources
-2. Rank them by relevance to the specific niche and target persona
-3. For each source, explain in one short line (max 80 characters) why it's useful for content inspiration
+    const prompt = `You are a content discovery assistant. Based on the niche "${niche}" and target persona "${targetPersona}", provide 12 highly relevant and popular content sources.
 
 For each source, provide:
-- name: The exact name of the website, blog, YouTube channel, or creator
-- url: The full URL (must be a real, working URL)
-- description: A one-line description showing what they cover
-- type: One of: Website, Blog, YouTube, LinkedIn, Newsletter, Podcast
-- relevanceReason: One short line explaining why this source is valuable for content inspiration (max 80 characters)
+1. name - The exact name of the website, blog, YouTube channel, or creator
+2. url - The full URL (must be a real, working URL)
+3. description - A one-line description (max 100 characters)
+4. type - One of: Website, Blog, YouTube, LinkedIn, Newsletter, Podcast
 
-Criteria for ranking:
-- Direct relevance to the niche and target persona (highest priority)
-- Quality and trustworthiness of content
-- Popularity and influence in the space
-- Active content production
-- Diversity of content types
+Provide sources that are:
+- Actually popular and well-known in this niche
+- Actively updated and relevant
+- Trusted by the target persona
+- Mix of different types (websites, blogs, YouTube channels, LinkedIn creators)
 
-Respond ONLY with a valid JSON array, ranked from most relevant to least relevant, in this exact format:
+Respond ONLY with a valid JSON array in this exact format:
 [
   {
     "name": "Example Blog",
     "url": "https://example.com",
     "description": "Leading insights on topic",
-    "type": "Blog",
-    "relevanceReason": "Top authority in the space with daily actionable content"
+    "type": "Blog"
   }
 ]
 
-Do not include any other text, just the JSON array with 10-12 sources ranked by relevance.`;
+Do not include any other text, just the JSON array.`;
 
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${geminiKey}`,
@@ -113,7 +104,7 @@ Do not include any other text, just the JSON array with 10-12 sources ranked by 
           }],
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 3072,
+            maxOutputTokens: 2048,
           }
         }),
       }
@@ -148,8 +139,6 @@ Do not include any other text, just the JSON array with 10-12 sources ranked by 
       } else {
         sources = JSON.parse(generatedText);
       }
-
-      sources = sources.slice(0, 15);
     } catch (parseError) {
       console.error("Failed to parse Gemini response:", generatedText);
       return new Response(
