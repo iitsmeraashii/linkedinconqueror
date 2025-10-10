@@ -286,15 +286,15 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
           message: err instanceof Error ? err.message : 'Failed to generate ideas'
         }
       }));
-
-      setTimeout(() => {
-        setLoadingStates(prev => {
-          const newStates = { ...prev };
-          delete newStates[sourceId];
-          return newStates;
-        });
-      }, 3000);
     }
+  };
+
+  const clearError = (sourceId: string) => {
+    setLoadingStates(prev => {
+      const newStates = { ...prev };
+      delete newStates[sourceId];
+      return newStates;
+    });
   };
 
   const handleSignOut = async () => {
@@ -430,6 +430,21 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                     <span className="bg-slate-100 px-2 py-1 rounded">{source.category}</span>
                   </div>
 
+                  {loadingStates[source.id]?.status === 'error' && (
+                    <div className="mb-4 bg-red-50 border border-red-200 rounded-lg p-3 flex items-start gap-2">
+                      <div className="flex-1">
+                        <p className="text-red-600 text-sm">{loadingStates[source.id]?.message}</p>
+                      </div>
+                      <button
+                        onClick={() => clearError(source.id)}
+                        className="flex-shrink-0 text-red-400 hover:text-red-600 transition-colors"
+                        title="Close"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  )}
+
                   <button
                     onClick={() => handleGetIdeas(source.id)}
                     disabled={loadingStates[source.id]?.status === 'scraping' || loadingStates[source.id]?.status === 'analyzing'}
@@ -439,10 +454,6 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
                         {loadingStates[source.id]?.message}
-                      </>
-                    ) : loadingStates[source.id]?.status === 'error' ? (
-                      <>
-                        <span className="text-red-100">Error: {loadingStates[source.id]?.message}</span>
                       </>
                     ) : generatedIdeas[source.id] ? (
                       <>
