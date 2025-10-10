@@ -48,7 +48,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               <span className="text-blue-200 text-sm ml-1">from over 50 reviews.</span>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-tight tracking-tight">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white mb-4 leading-none tracking-tight">
               WE GENERATE
             </h1>
             <div className="mb-8">
