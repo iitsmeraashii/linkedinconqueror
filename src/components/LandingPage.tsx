@@ -58,8 +58,14 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                   IDEAS YOUR
                 </h2>
               </div>
+              <div className="relative inline-block ml-4">
+                <div className="absolute inset-0 bg-blue-900 transform rotate-1 rounded-xl" />
+                <h2 className="relative text-5xl sm:text-7xl lg:text-8xl font-black text-lime-400 px-8 py-4 leading-tight tracking-tight inline">
+                  AUDIENCE
+                </h2>
+              </div>
               <h2 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white leading-tight tracking-tight inline ml-4">
-                AUDIENCE LOVE
+                LOVE
               </h2>
             </div>
 
