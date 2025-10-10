@@ -15,6 +15,7 @@ interface AISuggestedSource {
   url: string;
   description: string;
   type: string;
+  relevanceReason: string;
 }
 
 interface ContentSource {
@@ -25,6 +26,7 @@ interface ContentSource {
   category: string;
   is_selected?: boolean;
   isAISuggested?: boolean;
+  relevanceReason?: string;
 }
 
 export const DiscoverSources: React.FC = () => {
@@ -38,6 +40,7 @@ export const DiscoverSources: React.FC = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [selectedAISources, setSelectedAISources] = useState<Set<string>>(new Set());
   const [hasLoadedAI, setHasLoadedAI] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -70,6 +73,7 @@ export const DiscoverSources: React.FC = () => {
 
   const fetchAISources = async (niche: string, targetPersona: string) => {
     setIsLoadingAI(true);
+    setErrorMessage(null);
     try {
       const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/discover-sources`;
       const response = await fetch(apiUrl, {
@@ -92,13 +96,19 @@ export const DiscoverSources: React.FC = () => {
           url: source.url,
           description: source.description,
           category: source.type,
-          isAISuggested: true
+          isAISuggested: true,
+          relevanceReason: source.relevanceReason
         }));
         setAiSources(formattedSources);
         setHasLoadedAI(true);
+      } else {
+        const errorMsg = result.error || 'Failed to load AI sources';
+        setErrorMessage(errorMsg);
+        console.error('Error from API:', result);
       }
     } catch (err) {
       console.error('Error fetching AI sources:', err);
+      setErrorMessage('Failed to connect to the discovery service. Please try again later.');
     } finally {
       setIsLoadingAI(false);
     }
@@ -299,6 +309,14 @@ export const DiscoverSources: React.FC = () => {
             </div>
           )}
 
+          {errorMessage && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
+              <p className="text-red-800 font-medium mb-1">Error Loading Sources</p>
+              <p className="text-red-600 text-sm">{errorMessage}</p>
+              <p className="text-red-600 text-sm mt-2">Please check the browser console for more details.</p>
+            </div>
+          )}
+
           {!isLoadingAI && allSources.length === 0 && (
             <div className="text-center py-16">
               <p className="text-slate-500 mb-8">
@@ -347,9 +365,15 @@ export const DiscoverSources: React.FC = () => {
                           </span>
                         </div>
 
-                        <p className="text-sm text-slate-600 mb-3 line-clamp-1">
+                        <p className="text-sm text-slate-600 mb-2 line-clamp-1">
                           {source.description}
                         </p>
+
+                        {isAI && source.relevanceReason && (
+                          <p className="text-xs text-blue-600 italic mb-3 line-clamp-1">
+                            Why relevant: {source.relevanceReason}
+                          </p>
+                        )}
 
                         <div className="flex items-center gap-2">
                           <a
