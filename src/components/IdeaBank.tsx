@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import { Navigation } from './Navigation';
-import { Plus, ExternalLink, Lightbulb, Loader2, Trash2, Clock } from 'lucide-react';
+import { Plus, ExternalLink, Lightbulb, Loader2, Trash2 } from 'lucide-react';
 
 interface UserProfile {
   full_name: string;
@@ -10,14 +10,15 @@ interface UserProfile {
   target_persona: string;
 }
 
-interface SavedWebsite {
+interface ContentSource {
   id: string;
   url: string;
-  domain: string;
   name: string;
-  note: string;
-  last_used_at: string | null;
+  description: string;
+  category: string;
+  is_selected: boolean;
   created_at: string;
+  updated_at: string;
 }
 
 interface IdeaBankProps {
@@ -27,16 +28,16 @@ interface IdeaBankProps {
 export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
   const { user, signOut } = useAuth();
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-  const [websites, setWebsites] = useState<SavedWebsite[]>([]);
+  const [sources, setSources] = useState<ContentSource[]>([]);
   const [newUrl, setNewUrl] = useState('');
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
-  const [isLoadingWebsites, setIsLoadingWebsites] = useState(true);
+  const [isLoadingSources, setIsLoadingSources] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
     if (user) {
       loadUserProfile();
-      loadWebsites();
+      loadSources();
     }
   }, [user]);
 
@@ -59,20 +60,20 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
     }
   };
 
-  const loadWebsites = async () => {
+  const loadSources = async () => {
     try {
       const { data, error } = await supabase
-        .from('saved_websites')
+        .from('content_sources')
         .select('*')
         .eq('user_id', user?.id)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setWebsites(data || []);
+      setSources(data || []);
     } catch (err) {
-      console.error('Error loading websites:', err);
+      console.error('Error loading sources:', err);
     } finally {
-      setIsLoadingWebsites(false);
+      setIsLoadingSources(false);
     }
   };
 
@@ -100,20 +101,21 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
       const name = domain;
 
       const { data, error } = await supabase
-        .from('saved_websites')
+        .from('content_sources')
         .insert({
           user_id: user?.id,
           url: url,
-          domain: domain,
           name: name,
-          note: ''
+          description: '',
+          category: 'Website',
+          is_selected: false
         })
         .select()
         .single();
 
       if (error) throw error;
 
-      setWebsites(prev => [data, ...prev]);
+      setSources(prev => [data, ...prev]);
       setNewUrl('');
     } catch (err) {
       console.error('Error adding website:', err);
@@ -122,23 +124,23 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
     }
   };
 
-  const deleteWebsite = async (websiteId: string) => {
+  const deleteSource = async (sourceId: string) => {
     try {
       const { error } = await supabase
-        .from('saved_websites')
+        .from('content_sources')
         .delete()
-        .eq('id', websiteId);
+        .eq('id', sourceId);
 
       if (error) throw error;
 
-      setWebsites(prev => prev.filter(w => w.id !== websiteId));
+      setSources(prev => prev.filter(s => s.id !== sourceId));
     } catch (err) {
-      console.error('Error deleting website:', err);
+      console.error('Error deleting source:', err);
     }
   };
 
-  const handleGetIdeas = async (websiteId: string) => {
-    console.log('Get ideas for website:', websiteId);
+  const handleGetIdeas = async (sourceId: string) => {
+    console.log('Get ideas for source:', sourceId);
   };
 
   const handleSignOut = async () => {
@@ -150,22 +152,8 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
     return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
   };
 
-  const formatLastUsed = (lastUsedAt: string | null) => {
-    if (!lastUsedAt) return 'Never used';
 
-    const date = new Date(lastUsedAt);
-    const now = new Date();
-    const diffInMs = now.getTime() - date.getTime();
-    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-
-    if (diffInDays === 0) return 'Today';
-    if (diffInDays === 1) return 'Yesterday';
-    if (diffInDays < 7) return `${diffInDays} days ago`;
-    if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} weeks ago`;
-    return date.toLocaleDateString();
-  };
-
-  if (isLoadingProfile || isLoadingWebsites) {
+  if (isLoadingProfile || isLoadingSources) {
     return (
       <>
         <Navigation onAuthClick={handleSignOut} onLogoClick={() => window.location.href = '/'} />
@@ -224,27 +212,27 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
             </form>
           </div>
 
-          {websites.length === 0 ? (
+          {sources.length === 0 ? (
             <div className="text-center py-16">
               <Lightbulb className="w-16 h-16 text-slate-300 mx-auto mb-4" />
               <p className="text-slate-500 text-lg mb-2">
-                No websites saved yet
+                No sources saved yet
               </p>
               <p className="text-slate-400 text-sm">
-                Add your first website above to start generating content ideas
+                Add sources from the Discover Sources page or add a custom website above
               </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {websites.map((website) => (
+              {sources.map((source) => (
                 <div
-                  key={website.id}
+                  key={source.id}
                   className="bg-white border border-slate-200 rounded-xl p-5 hover:border-slate-300 hover:shadow-md transition-all duration-200"
                 >
                   <div className="flex items-start gap-4 mb-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden">
                       <img
-                        src={getFaviconUrl(website.domain)}
+                        src={getFaviconUrl(extractDomain(source.url))}
                         alt=""
                         className="w-8 h-8"
                         onError={(e) => {
@@ -256,10 +244,10 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
 
                     <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-slate-900 truncate mb-1">
-                        {website.name}
+                        {source.name}
                       </h3>
                       <a
-                        href={website.url}
+                        href={source.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 hover:underline"
@@ -270,27 +258,26 @@ export const IdeaBank: React.FC<IdeaBankProps> = ({ onNavigateToDiscover }) => {
                     </div>
 
                     <button
-                      onClick={() => deleteWebsite(website.id)}
+                      onClick={() => deleteSource(source.id)}
                       className="flex items-center justify-center w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 transition-all duration-200"
-                      title="Delete website"
+                      title="Delete source"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
 
-                  <div className="flex items-center gap-2 text-xs text-slate-500 mb-4">
-                    <Clock className="w-3.5 h-3.5" />
-                    Last used: {formatLastUsed(website.last_used_at)}
-                  </div>
-
-                  {website.note && (
+                  {source.description && (
                     <p className="text-sm text-slate-600 mb-4 line-clamp-2">
-                      {website.note}
+                      {source.description}
                     </p>
                   )}
 
+                  <div className="flex items-center gap-2 text-xs text-slate-500 mb-4">
+                    <span className="bg-slate-100 px-2 py-1 rounded">{source.category}</span>
+                  </div>
+
                   <button
-                    onClick={() => handleGetIdeas(website.id)}
+                    onClick={() => handleGetIdeas(source.id)}
                     className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-4 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <Lightbulb className="w-4 h-4" />
