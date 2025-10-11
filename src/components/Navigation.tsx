@@ -62,13 +62,14 @@ export function Navigation({ onAuthClick, onLogoClick, onDiscoverClick, onIdeaBa
         <div className="flex items-center justify-between h-16">
           <button
             onClick={handleLogoClick}
-            className="flex flex-col items-start hover:opacity-80 transition-opacity"
+            className="logo-link flex items-center hover:opacity-90 transition-all duration-300 hover:scale-105"
           >
-            <div className="flex items-center gap-2">
-              <Lightbulb className="w-6 h-6 text-blue-600" />
-              <span className="text-xl font-semibold text-slate-900">InConqueror</span>
-            </div>
-            <span className="text-xs text-slate-500 ml-8 -mt-0.5">Create, Connect, Conquer.</span>
+            <img
+              src="/WhatsApp Image 2025-10-11 at 13.24.08.png"
+              alt="InConqueror Logo"
+              className="site-logo h-8 sm:h-9 md:h-10 w-auto object-contain"
+              onLoad={(e) => e.currentTarget.classList.add('loaded')}
+            />
           </button>
 
           {user && (

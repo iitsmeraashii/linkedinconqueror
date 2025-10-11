@@ -115,3 +115,43 @@
 .animate-fade-in-down {
   animation: fade-in-down 0.2s ease-out forwards;
 }
+
+/* Logo Styles */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.site-logo {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: transform 0.25s ease, opacity 0.4s ease;
+}
+
+.site-logo.loaded {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeSlideIn 0.8s ease-out forwards;
+}
+
+.logo-link:hover .site-logo {
+  transform: scale(1.05);
+}
+
+.logo-link:active .site-logo {
+  transform: scale(0.98);
+}
