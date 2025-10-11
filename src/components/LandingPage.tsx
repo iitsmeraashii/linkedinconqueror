@@ -353,14 +353,14 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
                   <img
                     src="/rashi.jpg"
-                    alt="Sarah Johnson, Content Strategist"
+                    alt="Rashi Bhardwaj, Software Consultant"
                     className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-slate-900 mb-1">Sarah Johnson</h3>
-                  <p className="text-sm text-blue-600 font-semibold mb-3">Content Strategist</p>
-                  <p className="text-sm text-slate-600 leading-relaxed">Expert in viral LinkedIn content with 5+ years growing B2B brands.</p>
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">Rashi Bhardwaj</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Software Consultant</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Tech & AI Enthusiast working with businesses to create end-to-end solutions.</p>
                 </div>
               </div>
             </div>
