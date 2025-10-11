@@ -64,7 +64,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                     backgroundSize: '200% auto',
                     animation: 'gradient 3s linear infinite'
                   }}>
-                    Your Audience Love
+                    Your Audience Loves
                   </span>
                   <svg className="absolute -bottom-2 left-0 w-full h-4" viewBox="0 0 400 12" preserveAspectRatio="none">
                     <path
