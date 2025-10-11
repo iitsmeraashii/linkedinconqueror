@@ -136,6 +136,61 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         </div>
       </div>
 
+      <div className="relative w-full py-24 sm:py-32 lg:py-40 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)
+            `
+          }} />
+        </div>
+
+        <div className="absolute inset-0 opacity-5">
+          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="void-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <circle cx="50" cy="50" r="1" fill="white" opacity="0.3"/>
+                <circle cx="50" cy="50" r="20" fill="none" stroke="white" strokeWidth="0.5" opacity="0.2"/>
+                <circle cx="50" cy="50" r="35" fill="none" stroke="white" strokeWidth="0.3" opacity="0.1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#void-pattern)" />
+          </svg>
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium text-white leading-tight tracking-tight px-4">
+              You're Posting, Interacting, Sending Connection Requests… But What Comes Back? <span className="text-blue-300">Crickets.</span> You Know LinkedIn Should Work For You — But It Feels Like Shouting In A Void.
+            </h2>
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fade-in {
+            animation: fade-in 1s ease-out forwards;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in {
+              animation: none;
+            }
+          }
+        `}</style>
+      </div>
+
       <div className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center mb-12">
