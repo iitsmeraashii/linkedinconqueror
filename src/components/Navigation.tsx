@@ -65,7 +65,7 @@ export function Navigation({ onAuthClick, onLogoClick, onDiscoverClick, onIdeaBa
             className="logo-link flex items-center hover:opacity-90 transition-all duration-300 hover:scale-105"
           >
             <img
-              src="/WhatsApp Image 2025-10-11 at 13.24.08.png"
+              src="/InConqueror_transparent.png"
               alt="InConqueror Logo"
               className="site-logo h-8 sm:h-9 md:h-10 w-auto object-contain"
               onLoad={(e) => e.currentTarget.classList.add('loaded')}
