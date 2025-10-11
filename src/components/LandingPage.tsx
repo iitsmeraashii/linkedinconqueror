@@ -1,4 +1,4 @@
-import { Sparkles, Zap, Target, Star, TrendingUp, Award } from 'lucide-react';
+import { Sparkles, Zap, Target, Star, TrendingUp, Award, Search, Clock, Lightbulb, CheckCircle, FolderOpen, Workflow, Users, AlertCircle, TrendingUpIcon, BarChart } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface LandingPageProps {
@@ -105,6 +105,139 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                   Welcome back! Let's create.
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-sm border border-blue-100">
+              <AlertCircle className="w-4 h-4 text-blue-600" />
+              <span className="text-sm font-semibold text-blue-900 uppercase tracking-wide">Customer Pain Points</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <Search className="w-5 h-5 text-blue-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Difficulty Finding Relevant Content</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Struggling to discover content that resonates with your audience</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-amber-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Time-Consuming Research</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Hours spent researching topics and gathering information</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                  <Lightbulb className="w-5 h-5 text-purple-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Content Idea Fatigue</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Blank screen syndrome when trying to come up with new ideas</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-red-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Low Confidence in Quality</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Unsure if your content meets professional standards</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                  <FolderOpen className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Scattered Sources</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Information spread across multiple platforms and tools</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center">
+                  <Workflow className="w-5 h-5 text-cyan-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Inefficient Workflow</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Manual processes slow down content creation</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
+                  <Users className="w-5 h-5 text-pink-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Lack of Personal Branding Inspiration</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Difficulty establishing a unique voice and presence</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <AlertCircle className="w-5 h-5 text-orange-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Information Overload</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Too much data makes it hard to focus on what matters</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                  <TrendingUpIcon className="w-5 h-5 text-indigo-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Limited Access to Trending Ideas</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Missing out on what's currently resonating with audiences</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
+                  <BarChart className="w-5 h-5 text-teal-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-800 mb-1">Difficulty Scaling Content Creation</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">Can't maintain consistency as your audience grows</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
