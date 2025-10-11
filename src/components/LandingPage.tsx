@@ -352,7 +352,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <div className="relative mb-4 mx-auto w-32 h-32">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
                   <img
-                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    src="/rashi.jpg"
                     alt="Sarah Johnson, Content Strategist"
                     className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
                   />
