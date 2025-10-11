@@ -104,7 +104,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             `}</style>
 
             <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with fresh, trusted content ideas with potential to go viral instantly.
+              Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-bold text-slate-900">fresh, trusted content ideas</span> with potential to go viral instantly.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
