@@ -406,15 +406,15 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <div className="relative mb-4 mx-auto w-32 h-32">
                   <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
                   <img
-                    src="https://images.pexels.com/photos/1310522/pexels-photo-1310522.jpeg?auto=compress&cs=tinysrgb&w=400"
-                    alt="David Thompson, Analytics Lead"
+                    src="/WhatsApp Image 2025-10-11 at 15.03.21.jpeg"
+                    alt="Shagufta Siddiqui, AI Enthusiast"
                     className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-slate-900 mb-1">David Thompson</h3>
-                  <p className="text-sm text-blue-600 font-semibold mb-3">Analytics Lead</p>
-                  <p className="text-sm text-slate-600 leading-relaxed">Tracks engagement metrics and optimizes content performance daily.</p>
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">Shagufta Siddiqui</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">AI Enthusiast</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Exploring AI and loving it</p>
                 </div>
               </div>
             </div>
