@@ -56,7 +56,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
 
               <h1 className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-tight tracking-tight">
                 <span className="inline-block">
-                  We Generate Content
+                  Generate Content
                 </span>
                 <br />
                 <span className="relative inline-block mt-2">
