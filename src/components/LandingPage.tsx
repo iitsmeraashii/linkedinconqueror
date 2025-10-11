@@ -330,7 +330,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto mb-12 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <h5 className="text-lg sm:text-xl text-slate-600 mb-4 leading-relaxed">
-              We get it. We built LinkedIn Conqueror to make your profile, content, and network work for you.
+              We get it. We built InConqueror to make your profile, content, and network work for you.
             </h5>
             <p className="text-base sm:text-lg text-slate-500 leading-relaxed">
               With proven strategies, content templates, and growth systems, we help you turn your LinkedIn presence into a lead machine.

@@ -62,10 +62,13 @@ export function Navigation({ onAuthClick, onLogoClick, onDiscoverClick, onIdeaBa
         <div className="flex items-center justify-between h-16">
           <button
             onClick={handleLogoClick}
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="flex flex-col items-start hover:opacity-80 transition-opacity"
           >
-            <Lightbulb className="w-6 h-6 text-blue-600" />
-            <span className="text-xl font-semibold text-slate-900">LinkedIn Conqueror</span>
+            <div className="flex items-center gap-2">
+              <Lightbulb className="w-6 h-6 text-blue-600" />
+              <span className="text-xl font-semibold text-slate-900">InConqueror</span>
+            </div>
+            <span className="text-xs text-slate-500 ml-8 -mt-0.5">Create, Connect, Conquer.</span>
           </button>
 
           {user && (
