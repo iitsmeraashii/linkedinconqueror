@@ -1,4 +1,4 @@
-import { Sparkles, Zap, Target, Star, TrendingUp, Award, Search, Clock, Lightbulb, CheckCircle, FolderOpen, Workflow, Users, AlertCircle, TrendingUpIcon, BarChart, Award as AwardIcon, Brain, Rocket, Shield } from 'lucide-react';
+import { Sparkles, Zap, Target, Star, TrendingUp, Award, Search, Clock, Lightbulb, CheckCircle, FolderOpen, Workflow, Users, AlertCircle, TrendingUpIcon, BarChart, Award as AwardIcon, Brain, Rocket, Shield, Bookmark, Mic, Globe, ArrowRight, FileText } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface LandingPageProps {
@@ -374,6 +374,164 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                   <span>Build authority in your niche</span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="py-20 bg-gradient-to-br from-white via-slate-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+                Helping Creators and Professionals Shine Online
+              </h2>
+              <p className="text-lg text-slate-600 leading-relaxed mb-8">
+                We are passionate about making content creation simple, smart, and effective. Our platform helps creators and business professionals discover trending, trustworthy content sources and turn them into fresh, ready-to-use ideas — all in seconds. No more staring at blank screens or spending hours researching. Just relevant inspiration, streamlined into ideas you can post confidently.
+              </p>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mt-0.5">
+                    <TrendingUpIcon className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Discover trending websites, blogs, podcasts, and more</h4>
+                    <p className="text-sm text-slate-600">Stay on top of what's hot in your industry</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 bg-lime-100 rounded-lg flex items-center justify-center mt-0.5">
+                    <Bookmark className="w-4 h-4 text-lime-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Curate and save your favorite sources</h4>
+                    <p className="text-sm text-slate-600">Build your personal library of trusted content</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center mt-0.5">
+                    <Sparkles className="w-4 h-4 text-cyan-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Generate content ideas directly from trusted sources</h4>
+                    <p className="text-sm text-slate-600">Transform inspiration into actionable posts</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mt-0.5">
+                    <TrendingUp className="w-4 h-4 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900 mb-1">Grow your personal or business brand with ease</h4>
+                    <p className="text-sm text-slate-600">Consistent content builds lasting authority</p>
+                  </div>
+                </div>
+              </div>
+
+              <button className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+                Get Started Now
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="relative">
+              <div className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl p-8 shadow-xl border border-blue-200">
+                <div className="space-y-6">
+                  <div className="bg-white rounded-xl p-6 shadow-md">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <Globe className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="h-3 bg-slate-200 rounded w-3/4 mb-2" />
+                        <div className="h-2 bg-slate-100 rounded w-1/2" />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-2 bg-slate-100 rounded" />
+                      <div className="h-2 bg-slate-100 rounded w-5/6" />
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-6 shadow-md">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-lime-100 rounded-lg flex items-center justify-center">
+                        <Mic className="w-5 h-5 text-lime-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="h-3 bg-slate-200 rounded w-3/4 mb-2" />
+                        <div className="h-2 bg-slate-100 rounded w-1/2" />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-2 bg-slate-100 rounded" />
+                      <div className="h-2 bg-slate-100 rounded w-4/5" />
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-6 shadow-md">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center">
+                        <FileText className="w-5 h-5 text-cyan-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="h-3 bg-slate-200 rounded w-3/4 mb-2" />
+                        <div className="h-2 bg-slate-100 rounded w-1/2" />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="h-2 bg-slate-100 rounded" />
+                      <div className="h-2 bg-slate-100 rounded w-3/4" />
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl opacity-20 blur-xl" />
+                    <div className="relative bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-6 text-white">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Sparkles className="w-6 h-6" />
+                        <span className="font-bold text-lg">Content Ideas Generated</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-3 bg-white/30 rounded w-full" />
+                        <div className="h-3 bg-white/30 rounded w-5/6" />
+                        <div className="h-3 bg-white/30 rounded w-4/5" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-lime-400 rounded-full opacity-30 blur-2xl" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-cyan-400 rounded-full opacity-30 blur-2xl" />
+              </div>
+
+              <div className="absolute top-8 -left-4 flex gap-2">
+                <div className="w-12 h-12 bg-blue-500 rounded-lg shadow-lg flex items-center justify-center animate-bounce" style={{ animationDelay: '0s', animationDuration: '2s' }}>
+                  <Globe className="w-6 h-6 text-white" />
+                </div>
+                <div className="w-12 h-12 bg-lime-500 rounded-lg shadow-lg flex items-center justify-center animate-bounce" style={{ animationDelay: '0.3s', animationDuration: '2s' }}>
+                  <Mic className="w-6 h-6 text-white" />
+                </div>
+                <div className="w-12 h-12 bg-cyan-500 rounded-lg shadow-lg flex items-center justify-center animate-bounce" style={{ animationDelay: '0.6s', animationDuration: '2s' }}>
+                  <FileText className="w-6 h-6 text-white" />
+                </div>
+              </div>
+
+              <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-2xl p-4 border border-slate-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-lg flex items-center justify-center">
+                    <ArrowRight className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-slate-500 font-medium">Ideas Generated</div>
+                    <div className="text-xl font-bold text-slate-900">247+</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
