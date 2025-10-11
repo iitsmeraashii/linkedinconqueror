@@ -458,7 +458,10 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 </div>
               </div>
 
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <button
+                onClick={onGetStarted}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
                 Get Started Now
                 <ArrowRight className="w-4 h-4" />
               </button>
