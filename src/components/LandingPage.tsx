@@ -51,9 +51,57 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               <span className="ml-2 text-slate-700 text-sm font-medium">Rated 4.97/5 from over 50 reviews.</span>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 mb-6 leading-tight tracking-tight">
-              We generate content your audience love
-            </h1>
+            <div className="relative mb-6">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 opacity-10 blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+
+              <h1 className="relative text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-tight tracking-tight">
+                <span className="inline-block">
+                  We Generate Content
+                </span>
+                <br />
+                <span className="relative inline-block mt-2">
+                  <span className="relative z-10 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent" style={{
+                    backgroundSize: '200% auto',
+                    animation: 'gradient 3s linear infinite'
+                  }}>
+                    Your Audience Love
+                  </span>
+                  <svg className="absolute -bottom-2 left-0 w-full h-4" viewBox="0 0 400 12" preserveAspectRatio="none">
+                    <path
+                      d="M 0,6 Q 100,0 200,6 T 400,6"
+                      fill="none"
+                      stroke="url(#gradient)"
+                      strokeWidth="3"
+                      style={{
+                        strokeDasharray: '1000',
+                        strokeDashoffset: '0',
+                        animation: 'draw 2s ease-in-out infinite alternate'
+                      }}
+                    />
+                    <defs>
+                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#3b82f6" />
+                        <stop offset="50%" stopColor="#06b6d4" />
+                        <stop offset="100%" stopColor="#3b82f6" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </span>
+              </h1>
+            </div>
+
+            <style>{`
+              @keyframes gradient {
+                0% { background-position: 0% center; }
+                50% { background-position: 100% center; }
+                100% { background-position: 0% center; }
+              }
+
+              @keyframes draw {
+                0% { stroke-dashoffset: 1000; }
+                100% { stroke-dashoffset: 0; }
+              }
+            `}</style>
 
             <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed">
               Create LinkedIn posts in seconds. Say goodbye to blank screens and start growing your personal brand with <span className="font-semibold text-slate-900">fresh, trusted content ideas</span> instantly.
