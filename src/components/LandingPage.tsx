@@ -317,6 +317,153 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         `}</style>
       </div>
 
+      <section className="relative w-full py-20 sm:py-24 lg:py-32 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.08) 0%, transparent 50%)
+            `
+          }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto mb-12 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <h5 className="text-lg sm:text-xl text-slate-600 mb-4 leading-relaxed">
+              We get it. We built LinkedIn Conqueror to make your profile, content, and network work for you.
+            </h5>
+            <p className="text-base sm:text-lg text-slate-500 leading-relaxed">
+              With proven strategies, content templates, and growth systems, we help you turn your LinkedIn presence into a lead machine.
+            </p>
+          </div>
+
+          <div className="text-center mb-16 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 tracking-tight">
+              Meet The Conquerors
+            </h2>
+            <div className="flex justify-center">
+              <div className="w-32 h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 rounded-full"></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8">
+            <div className="group opacity-0 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
+                <div className="relative mb-4 mx-auto w-32 h-32">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <img
+                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    alt="Sarah Johnson, Content Strategist"
+                    className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">Sarah Johnson</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Content Strategist</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Expert in viral LinkedIn content with 5+ years growing B2B brands.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group opacity-0 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
+                <div className="relative mb-4 mx-auto w-32 h-32">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <img
+                    src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    alt="Michael Chen, Growth Hacker"
+                    className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">Michael Chen</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Growth Hacker</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Scaled 50+ LinkedIn profiles to 10k+ followers using data-driven tactics.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
+                <div className="relative mb-4 mx-auto w-32 h-32">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <img
+                    src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    alt="Emily Rodriguez, Brand Architect"
+                    className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">Emily Rodriguez</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Brand Architect</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Helps executives build thought leadership and authentic personal brands.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
+                <div className="relative mb-4 mx-auto w-32 h-32">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <img
+                    src="https://images.pexels.com/photos/1310522/pexels-photo-1310522.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    alt="David Thompson, Analytics Lead"
+                    className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">David Thompson</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Analytics Lead</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Tracks engagement metrics and optimizes content performance daily.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100">
+                <div className="relative mb-4 mx-auto w-32 h-32">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <img
+                    src="https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400"
+                    alt="Jessica Park, Community Manager"
+                    className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">Jessica Park</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">Community Manager</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Builds engaged communities and fosters meaningful connections.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes fade-in-up {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in-up {
+              animation: none;
+              opacity: 1;
+            }
+          }
+        `}</style>
+      </section>
+
       <div id="learn-about" className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
