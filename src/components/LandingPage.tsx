@@ -109,57 +109,6 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           </div>
         </div>
       </div>
-
-      <div className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-full">
-              <Award className="w-4 h-4 text-blue-600" />
-              <h2 className="text-sm font-semibold text-blue-900 uppercase tracking-wide">Benefits</h2>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-lime-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
-              <div className="relative">
-                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
-                  <Sparkles className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-blue-900 mb-4">Instant Ideas</h3>
-                <p className="text-blue-700 leading-relaxed">
-                  Capture your thoughts and turn them into structured post drafts instantly. No more writer's block.
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-lime-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
-              <div className="relative">
-                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
-                  <Zap className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-blue-900 mb-4">Lightning Fast</h3>
-                <p className="text-blue-700 leading-relaxed">
-                  From idea to polished draft in seconds. Spend less time writing, more time engaging.
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 shadow-md">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-lime-400 rounded-full filter blur-2xl opacity-40 group-hover:opacity-60 transition-opacity" />
-              <div className="relative">
-                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
-                  <Target className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-blue-900 mb-4">Stay Consistent</h3>
-                <p className="text-blue-700 leading-relaxed">
-                  Build your personal brand with regular, high-quality content. Your audience will thank you.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
