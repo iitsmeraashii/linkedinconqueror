@@ -117,11 +117,12 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                     Get Started Free
                     <ArrowRight className="w-5 h-5" />
                   </button>
-                  <button
+                  <a
+                    href="#learn-about"
                     className="inline-flex items-center gap-2 px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 text-base font-semibold rounded-xl transition-all border-2 border-slate-200 hover:border-slate-300 shadow-sm hover:shadow-md"
                   >
                     Learn About Us
-                  </button>
+                  </a>
                 </>
               )}
               {user && (
@@ -268,7 +269,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         </div>
       </div>
 
-      <div className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 relative overflow-hidden">
+      <div id="learn-about" className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 relative overflow-hidden scroll-mt-20">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `
