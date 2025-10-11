@@ -136,6 +136,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         </div>
       </div>
 
+
       <div className="relative w-full py-24 sm:py-32 lg:py-40 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -160,47 +161,15 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center animate-fade-in">
+          <div className="text-center animate-fade-in mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium text-white leading-tight tracking-tight px-4">
               You're Posting, Interacting, Sending Connection Requests… But What Comes Back? <span className="text-blue-300">Crickets.</span> You Know LinkedIn Should Work For You — But It Feels Like Shouting In A Void.
             </h2>
           </div>
-        </div>
 
-        <style>{`
-          @keyframes fade-in {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          .animate-fade-in {
-            animation: fade-in 1s ease-out forwards;
-          }
-
-          @media (prefers-reduced-motion: reduce) {
-            .animate-fade-in {
-              animation: none;
-            }
-          }
-        `}</style>
-      </div>
-
-      <div className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center mb-12">
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-sm border border-blue-100">
-              <AlertCircle className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-900 uppercase tracking-wide">Customer Pain Points</span>
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 border border-slate-100">
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -322,6 +291,30 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </div>
           </div>
         </div>
+        </div>
+
+        <style>{`
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fade-in {
+            animation: fade-in 1s ease-out forwards;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .animate-fade-in {
+              animation: none;
+            }
+          }
+        `}</style>
       </div>
 
       <div id="learn-about" className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 relative overflow-hidden scroll-mt-20">
