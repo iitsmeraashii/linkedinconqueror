@@ -1,4 +1,4 @@
-import { Sparkles, Zap, Target, Star, TrendingUp, Award, Search, Clock, Lightbulb, CheckCircle, FolderOpen, Workflow, Users, AlertCircle, TrendingUpIcon, BarChart } from 'lucide-react';
+import { Sparkles, Zap, Target, Star, TrendingUp, Award, Search, Clock, Lightbulb, CheckCircle, FolderOpen, Workflow, Users, AlertCircle, TrendingUpIcon, BarChart, Award as AwardIcon, Brain, Rocket, Shield } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface LandingPageProps {
@@ -238,6 +238,142 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                   <p className="text-xs text-slate-600 leading-relaxed">Can't maintain consistency as your audience grows</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+          }} />
+        </div>
+
+        <div className="absolute top-20 right-20 w-64 h-64 bg-lime-400 rounded-full filter blur-3xl opacity-20" />
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-cyan-400 rounded-full filter blur-3xl opacity-15" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center mb-12">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <AwardIcon className="w-4 h-4 text-lime-400" />
+              <span className="text-sm font-semibold text-white uppercase tracking-wide">Benefits</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Sparkles className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Instant Ideas</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Capture your thoughts and turn them into structured post drafts instantly. No more writer's block.
+              </p>
+            </div>
+
+            <div className="group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Zap className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Lightning Fast</h3>
+              <p className="text-slate-600 leading-relaxed">
+                From idea to polished draft in seconds. Spend less time writing, more time engaging.
+              </p>
+            </div>
+
+            <div className="group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Target className="w-7 h-7 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">Stay Consistent</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Build your personal brand with regular, high-quality content. Your audience will thank you.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-lime-400 rounded-lg flex items-center justify-center">
+                  <Brain className="w-5 h-5 text-blue-900" />
+                </div>
+                <h4 className="text-lg font-bold text-white">Competence</h4>
+              </div>
+              <p className="text-blue-100 text-sm leading-relaxed mb-3">
+                Help users feel capable, confident, and skilled.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0 mt-0.5" />
+                  <span>Generate relevant, personalized ideas</span>
+                </li>
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0 mt-0.5" />
+                  <span>Boost clarity and writing mastery</span>
+                </li>
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-lime-400 flex-shrink-0 mt-0.5" />
+                  <span>Professional-quality output every time</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-cyan-400 rounded-lg flex items-center justify-center">
+                  <Rocket className="w-5 h-5 text-blue-900" />
+                </div>
+                <h4 className="text-lg font-bold text-white">Time Efficiency</h4>
+              </div>
+              <p className="text-blue-100 text-sm leading-relaxed mb-3">
+                Highlight time-saving features for maximum productivity.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <span>Automated research and trend discovery</span>
+                </li>
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <span>Instant ideation and content drafts</span>
+                </li>
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <span>Streamlined workflow from start to finish</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-blue-900" />
+                </div>
+                <h4 className="text-lg font-bold text-white">Trust & Credibility</h4>
+              </div>
+              <p className="text-blue-100 text-sm leading-relaxed mb-3">
+                Emphasize credibility through curated, reliable sources.
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+                  <span>Verified, high-quality content sources</span>
+                </li>
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+                  <span>Industry-leading accuracy and relevance</span>
+                </li>
+                <li className="flex items-start gap-2 text-blue-200 text-sm">
+                  <CheckCircle className="w-4 h-4 text-white flex-shrink-0 mt-0.5" />
+                  <span>Build authority in your niche</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
