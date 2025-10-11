@@ -799,7 +799,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             Ready To Conquer LinkedIn?
           </h2>
 
-          <p className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium text-slate-900 leading-tight tracking-tight mb-10 max-w-4xl mx-auto px-4">
             Don't be the "best-kept secret" in your industry. Don't lose clients because no one sees your expertise. Join creators who are building their personal brand, one post at a time.
           </p>
 
