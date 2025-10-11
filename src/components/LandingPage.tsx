@@ -424,15 +424,15 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <div className="relative mb-4 mx-auto w-32 h-32">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
                   <img
-                    src="/WhatsApp Image 2025-10-11 at 15.11.22.jpeg"
-                    alt="Jessica Park, Community Manager"
+                    src="/WhatsApp Image 2025-10-11 at 15.21.19.jpeg"
+                    alt="Vinay Singh Mediratta, AI Enthusiast"
                     className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-slate-900 mb-1">Jessica Park</h3>
-                  <p className="text-sm text-blue-600 font-semibold mb-3">Community Manager</p>
-                  <p className="text-sm text-slate-600 leading-relaxed">Builds engaged communities and fosters meaningful connections.</p>
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">Vinay Singh Mediratta</h3>
+                  <p className="text-sm text-blue-600 font-semibold mb-3">AI Enthusiast</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">Making businesses grow online</p>
                 </div>
               </div>
             </div>
