@@ -388,7 +388,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 <div className="relative mb-4 mx-auto w-32 h-32">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full opacity-20 blur-xl group-hover:opacity-40 transition-opacity duration-500"></div>
                   <img
-                    src="/WhatsApp Image 2025-10-11 at 15.11.22.jpeg"
+                    src="/WhatsApp Image 2025-10-11 at 15.06.45.jpeg"
                     alt="Ankit Kujur, AI Enthusiast"
                     className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
                   />
