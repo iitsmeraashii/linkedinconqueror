@@ -561,6 +561,77 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           </div>
         </div>
       </div>
+
+      <div className="relative py-24 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 overflow-hidden">
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 50%)
+            `
+          }} />
+        </div>
+
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(45deg, rgba(148, 163, 184, 0.05) 25%, transparent 25%),
+              linear-gradient(-45deg, rgba(148, 163, 184, 0.05) 25%, transparent 25%),
+              linear-gradient(45deg, transparent 75%, rgba(148, 163, 184, 0.05) 75%),
+              linear-gradient(-45deg, transparent 75%, rgba(148, 163, 184, 0.05) 75%)
+            `,
+            backgroundSize: '40px 40px',
+            backgroundPosition: '0 0, 0 20px, 20px -20px, -20px 0px'
+          }} />
+        </div>
+
+        <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400 rounded-full opacity-20 animate-ping" style={{ animationDuration: '3s' }} />
+        <div className="absolute bottom-10 right-10 w-20 h-20 bg-cyan-400 rounded-full opacity-20 animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />
+
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full filter blur-3xl opacity-20 animate-pulse" style={{ animationDuration: '5s' }} />
+        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full filter blur-3xl opacity-15 animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl shadow-lg mb-6 animate-bounce" style={{ animationDuration: '2s' }}>
+            <Rocket className="w-8 h-8 text-white" />
+          </div>
+
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-slate-900 mb-4 leading-tight">
+            Ready To Conquer LinkedIn?
+          </h2>
+
+          <p className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Join creators who are building their personal brand, one post at a time.
+          </p>
+
+          {!user && (
+            <button
+              onClick={onGetStarted}
+              className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white text-lg font-bold rounded-2xl transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl"
+            >
+              Start Creating Now
+              <ArrowRight className="w-6 h-6" />
+            </button>
+          )}
+
+          <div className="mt-12 flex items-center justify-center gap-8 flex-wrap">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-medium text-slate-700">No credit card required</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-medium text-slate-700">Free to start</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-blue-600" />
+              <span className="text-sm font-medium text-slate-700">Cancel anytime</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+      </div>
     </div>
   );
 }
