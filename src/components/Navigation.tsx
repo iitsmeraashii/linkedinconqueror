@@ -67,7 +67,7 @@ export function Navigation({ onAuthClick, onLogoClick, onDiscoverClick, onIdeaBa
             <img
               src="/InConqueror_transparent.png"
               alt="InConqueror Logo"
-              className="site-logo h-8 sm:h-9 md:h-10 w-auto object-contain"
+              className="site-logo h-7 sm:h-8 md:h-9 w-auto object-contain"
               onLoad={(e) => e.currentTarget.classList.add('loaded')}
             />
           </button>
