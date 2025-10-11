@@ -355,7 +355,7 @@ export const DiscoverSources: React.FC<DiscoverSourcesProps> = ({ onNavigateToId
           {!isLoadingAI && aiSources.length > 0 && (
             <>
             <div className="mb-6">
-              <h2 className="text-xl font-semibold text-slate-900 mb-4">AI Recommended Sources</h2>
+              <h2 className="text-xl font-semibold text-slate-900 mb-4">Recommended Sources to Generate Content Ideas</h2>
               <div className="max-h-[600px] overflow-y-auto mb-4 pr-2 space-y-3">
                 {aiSources.map((source, index) => {
                   const isSelected = selectedAISources.has(source.url);
