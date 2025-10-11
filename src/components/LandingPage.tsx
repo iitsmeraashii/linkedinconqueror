@@ -162,9 +162,9 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center animate-fade-in mb-16">
-            <h7 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium text-slate-900 leading-tight tracking-tight px-4">
+            <p className="text-lg sm:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
               You're Posting, Interacting, Sending Connection Requests… But What Comes Back? <span className="text-blue-300">Crickets.</span> You Know LinkedIn Should Work For You — But It Feels Like Shouting In A Void.
-            </h7>
+            </p>
           </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
