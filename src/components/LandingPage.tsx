@@ -137,7 +137,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
       </div>
 
 
-      <div className="relative w-full py-24 sm:py-32 lg:py-40 bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 overflow-hidden">
+      <div className="relative w-full py-24 sm:py-32 lg:py-40 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
             backgroundImage: `
@@ -162,7 +162,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center animate-fade-in mb-16">
-            <h5 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium text-slate-200 leading-tight tracking-tight px-4">
+            <h5 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-medium text-slate-900 leading-tight tracking-tight px-4">
               You're Posting, Interacting, Sending Connection Requests… But What Comes Back? <span className="text-blue-300">Crickets.</span> You Know LinkedIn Should Work For You — But It Feels Like Shouting In A Void.
             </h5>
           </div>
